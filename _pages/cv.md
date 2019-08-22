@@ -117,8 +117,11 @@ Service and leadership
 
 Achievements
 ======
-* 2018 Great Minds in STEM Scholarship recipient
+* 2019 Rio Hondo College Outstanding Student Award - Biology
+* 2018 Rio Hondo College Outstanding Student Award - Engineering
+* 2018 Great Minds in STEM/HENAAC Scholarship recipient
+* 2018 Boyce Thompson Institute Poster Conference - 1st Place
 * 2018 Grow with Google Udacity Scholarship (Android programming)
 * 2018, 2017 Southern California Edison Book Scholarship recipient
-* Dean’s List since Fall 2016
-* Student travel scholarship to SACNAS conference (2017)
+* Rio Hondo College Dean’s List Fall 2016 - Fall 2019
+* 2017 Student travel scholarship to SACNAS conference
