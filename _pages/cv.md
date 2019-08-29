@@ -11,13 +11,13 @@ redirect_from:
 
 Education
 ======
+* B.S. in Quantitative Biology in progress, University of Southern California, 2022
 * A.S. in Biology, Engineering, and General Sciences, Rio Hondo College, 2019
 * A.D.T in Biology, Mathematics, Physics, Chemistry, Rio Hondo College, 2019
-* B.S. in Quantitative Biology in progress, University of Southern California, 2022
 
 Internships
 ======
-* 11/2018 - present: Research Assistant
+* 11/2018 - present: Undergraduate Research Assistant
   * University of Southern California
   * Center for Dark Energy Biospheres Investigations
   * Studying metabolic diversity in the globally abundant Planctomycetes phylum.
