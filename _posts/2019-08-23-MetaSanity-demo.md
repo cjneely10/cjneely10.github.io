@@ -30,9 +30,11 @@ For this blog, I have selected a group of genomes of variable quality and comple
 
 These datasets are available for download at [insert-url-here]().
 
+Runtime for **MetaSanity** can be quite for high numbers of genomes. For convenience, users are recommended to run all portions of this blog in a separate screen environment. For example, `screen -S test-run-MetaSanity`.
+
 Installation
 ------
-See the [wiki page](https://github.com/cjneely10/MetaSanity/wiki/2-Installation) for installation instructions.
+See the [wiki page](https://github.com/cjneely10/MetaSanity/wiki/2-Installation) for installation instructions. This blog post assumes that users have completed instructions for the optional `.bashrc` installation.
 
 Project preparation
 ======
@@ -61,12 +63,28 @@ The config file `PhyloSanity.ini` can be used as-is; however, users may add addi
 
 For this blog, I have access to a server that is powerful enough to handle multi-threading and high-memory programs. So, I will increase the number of threads on all of my programs and will remove any options that reduce memory usage. At this step, users should provide settings that are suitable to their working environments.
 
-In the `CHECKM` section, I will change the number of threads from `-t =1` to `-t = 10`. I will also remove the line `FLAGS = --reduced_tree`. Since each `pplacer` thread can add up to 100 GB of RAM usage, I will keep its default value at 1.
+In the `CHECKM` section, I will change the number of threads from `-t = 1` to `-t = 10`. I will also remove the line `FLAGS = --reduced_tree`. I will also change the number of pplacer threads from `--pplacer_threads = 1` to `--pplacer_threads = 10`.
 
 The default values in the `FASTANI` and `BIOMETADB` sections are suitable and will not be changed.
 
-In the optional `GTDBTK` section, I will change the line `--cpus = 1` to be `--cpus = 4`. No other changes are needed. Users may choose to omit this evaluation step by 
+In the optional `GTDBTK` section, no changes are needed. Users may choose to omit this evaluation step by commenting out th entire `GTDBTK` section of the config file.
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and redundant. This demo will use the above values, so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`, changing the required CheckM-determined completion score to a higher value to identify a genome as "complete".
 
 ![](https://cjneely10.github.io/files/phylosanity-ini-post.png)
+
+Running PhyloSanity
+------
+The project directory `test-run` should resemble the following structure:
+
+<pre><code>test-run/
+├── genomes
+└── PhyloSanity.ini</code></pre>
+
+From within this directory, run the **PhyloSanity** pipeline. You may redirect log messages to a separate file.
+
+`MetaSanity -d genomes/ -c PhyloSanity.ini PhyloSanity 2>eval.log`
+
+Depending on your system, this may run for several hours.
+
+Once the project is complete, 
