@@ -10,11 +10,17 @@ For this blog, I have selected a group of genomes of variable quality and comple
 These datasets are available for download at [insert-url-here]().
 
 Why should I use MetaSanity?
-======
+------
 **MetaSanity** provides two key benefits that make it a highly recommended tool for researchers.
 
 1. Customizable and scalable pipelines
-	1. 
+	1. Build an annotation pipeline from a variety of commonly used software packages.
+	2. Fine tune flags for each program to match research needs.
+	3. Re-run specific pipeline sections, or integrate additional analyses into an existing project.
+2. Queryable output for project modularization and metadata retention.
+	1. **BioMetaDB** project stores output from each pipeline as a SQLite3 table.
+	2. All data files and kept in single location.
+	3. Interface to command-line to query for fasta records with specific annotations, or to generate `.tsv` summary of all annotations.
 
 Installation
 ------
@@ -41,4 +47,6 @@ Copy the default configuration file from your program package into your project 
 
 `cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/PhyloSanity.ini ./`
 
+The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags as needed.
 
+![](https://cjneely10.github.io/files/phylosanity-ini.png)
