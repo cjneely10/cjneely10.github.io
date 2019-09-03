@@ -21,7 +21,7 @@ Internships
   * University of Southern California
   * Center for Dark Energy Biospheres Investigations
   * Studying metabolic diversity in the globally abundant Planctomycetes phylum.
-  * Mentor: Ben Tully, Ph.D
+  * Mentor: John Heidelberg, Ph.D, and Ben Tully, Ph.D
 * 06/2018 - 08/2018: Bioinformatics Intern
   * Cornell University, New York
   * Boyce Thompson Institute
