@@ -1,3 +1,12 @@
+---
+title: 'MetaSanity demo'
+date: 2019-08-23
+permalink: /posts/2019/08/MetaSanity-demo/
+tags:
+  - MetaSanity
+  - demos
+---
+
 MetaSanity demo
 ======
 
