@@ -89,4 +89,41 @@ From within this directory, run the **PhyloSanity** pipeline. You may redirect l
 
 Depending on your system, this may run for several hours.
 
-Once the project is complete, 
+Once **PhyloSanity** is complete, the project directory structure will resemble the following:
+
+<pre><code>test-run/
+├── genomes
+├── eval.log
+├── out/
+├── Metagenomes/
+└── PhyloSanity.ini</code></pre>
+
+The `out` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all raw data stored in the BioMetaDB table `evaluation`.
+
+We can generate a quick summary of this data using a command-line query:
+<pre><code>>dbdm SUMMARIZE -c Metagenomes -t evaluation
+
+SUMMARIZE:	View summary of all tables in database
+ Project root directory:	Metagenomes
+ Name of database:		Metagenomes.db
+
+*******************************************************************************************
+	     Table Name:	evaluation  
+	Number of Records:	       201/201       
+
+	        Database	Average             	Std Dev     
+
+	      completion	83.504              	85.166      
+	   contamination	2.231               	3.246       
+-------------------------------------------------------------------------------------------
+
+	        Database	Most Frequent       	Number    	Total Count 
+
+	     is_complete	False               	109       	201         
+	 is_contaminated	False               	175       	201         
+	is_non_redundant	True                	138       	201         
+	       phylogeny	d__Bacteria;p__Pl...	8         	201         
+	redundant_copies	[]                  	98        	201         
+-------------------------------------------------------------------------------------------</code></pre>
+
+
