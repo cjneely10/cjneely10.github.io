@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-*“Whether we are based on carbon or on silicon makes no fundamental difference; we should each be treated with appropriate respect.”*
+*“Whether we are based on carbon or on silicon makes no fundamental difference; we should each be treated with appropriate respect.” - Arthur C. Clarke*
 ------
 For most of my life, I was very uninterested in technology. I never imagined that I would grow such a huge interest in computers and programming. 
 
