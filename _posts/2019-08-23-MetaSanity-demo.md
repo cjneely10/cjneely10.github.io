@@ -73,7 +73,7 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and redundant. This demo will use the above values, so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`, changing the required CheckM-determined completion score to a higher value to identify a genome as "complete".
 
-![](https://cjneely10.github.io/files/phylosanity-ini-post.png)
+![](https://cjneely10.github.io/files/phylosanity-ini-1.png)
 
 Running PhyloSanity
 ------
