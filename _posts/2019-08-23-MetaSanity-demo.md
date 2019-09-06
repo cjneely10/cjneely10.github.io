@@ -73,7 +73,7 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and redundant. This demo will use the above values, so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`, changing the required CheckM-determined completion score to a higher value to identify a genome as "complete".
 
-![](https://cjneely10.github.io/files/phylosanity-ini-1.png)
+![](https://cjneely10.github.io/files/phylosanity-ini-post.png)
 
 Running PhyloSanity
 ------
@@ -101,29 +101,8 @@ Once **PhyloSanity** is complete, the project directory structure will resemble 
 The `out` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all raw data stored in the BioMetaDB table `evaluation`.
 
 We can generate a quick summary of this data using a command-line query:
-<pre><code>>dbdm SUMMARIZE -c Metagenomes -t evaluation
+`dbdm SUMMARIZE -c Metagenomes -t evaluation`
 
-SUMMARIZE:	View summary of all tables in database
- Project root directory:	Metagenomes
- Name of database:		Metagenomes.db
+![](https://cjneely10.github.io/files/phylosanity-ini-2.png)
 
-*******************************************************************************************
-	     Table Name:	evaluation  
-	Number of Records:	       201/201       
-
-	        Database	Average             	Std Dev     
-
-	      completion	83.504              	85.166      
-	   contamination	2.231               	3.246       
--------------------------------------------------------------------------------------------
-
-	        Database	Most Frequent       	Number    	Total Count 
-
-	     is_complete	False               	109       	201         
-	 is_contaminated	False               	175       	201         
-	is_non_redundant	True                	138       	201         
-	       phylogeny	d__Bacteria;p__Pl...	8         	201         
-	redundant_copies	[]                  	98        	201         
--------------------------------------------------------------------------------------------</code></pre>
-
-
+Using the stringent completion parameters, 
