@@ -80,7 +80,7 @@ Running PhyloSanity
 The project directory `test-run` should resemble the following structure:
 
 <pre><code>test-run/
-├── genomes
+├── genomes/
 └── PhyloSanity.ini</code></pre>
 
 From within this directory, run the **PhyloSanity** pipeline. You may redirect log messages to a separate file.
@@ -92,7 +92,7 @@ Depending on your system, this may run for several hours.
 Once **PhyloSanity** is complete, the project directory structure will resemble the following:
 
 <pre><code>test-run/
-├── genomes
+├── genomes/
 ├── eval.log
 ├── out/
 ├── Metagenomes/
