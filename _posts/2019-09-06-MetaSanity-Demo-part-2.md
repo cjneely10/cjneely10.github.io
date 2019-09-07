@@ -7,4 +7,6 @@ tags:
   - demos
 ---
 
-Continued
+Now that the set of genomes has been evaluated for quality and we have selected a non-redundant subset, we will not structurally and functionally annotate each genome.
+
+

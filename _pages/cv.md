@@ -27,7 +27,7 @@ Internships
   * Boyce Thompson Institute
   * Summer Research Experience for Undergraduates
   * Created a pangenome for *Solanum habrochaites*.
-  * Mentor: Lei Gao, Ph.D
+  * Mentor: Zhangjun Fei, Ph.D, and Lei Gao, Ph.D
 * 01/2018 - 06/2018: Scientific Exchange Internship
   * University of California - Los Angeles, CA, and Rio Hondo College - Whittier, CA
   * UCLA Center for Biological Physics
@@ -38,7 +38,7 @@ Internships
   * Center for Dark Energy Biospheres Investigations
   * Community College Cultivation Cohort
   * Led team of 4 in characterization of novel, iron-oxidizing chemolithoautotrophic bateria.
-  * Mentor: Roman Barco, Ph.D
+  * Mentor: Jan Amend, Ph.D, and Roman Barco, Ph.D
 
 Programs
 ======
@@ -51,7 +51,7 @@ Programs
   * Rio Hondo Community College, Whittier, CA
   * Led team in building and programming sensor to collect GPS, CO_2 concentration, and weather data.
   * Presented RC-style rover with embedded sensor at Armstrong Flight Research Center, 08/2017.
-  * Mentors: Chris Vaca, Ph.D, and Gisela Spieler-Persad, Ph.D
+  * Mentors: Gisela Spieler-Persad, Ph.D, and Chris Vaca, Ph.D
 * 08/2016 - 06/2017: Cengage Learning Student Advisory Team
   * Work with product developers to create useful programs and software for students.
 

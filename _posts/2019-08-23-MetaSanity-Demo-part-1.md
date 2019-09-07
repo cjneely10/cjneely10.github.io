@@ -164,4 +164,4 @@ After running this command, your directory structure should resemble the followi
 ├── Metagenomes/
 └── PhyloSanity.ini</code></pre>
 
-In the next blog, we will use **FuncSanity** to annotate this dataset!
+In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-demo-part-2/), we will use **FuncSanity** to annotate this dataset!
