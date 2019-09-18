@@ -1,7 +1,7 @@
 ---
-title: 'MetaSanity Demo part 2'
-date: 2019-09-06
-permalink: /posts/2019/09/MetaSanity-demo-part-2/
+title: 'MetaSanity Demo part 3'
+date: 2019-09-18
+permalink: /posts/2019/09/MetaSanity-demo-part-3/
 tags:
   - MetaSanity
   - demos
@@ -98,5 +98,3 @@ However, all of this data was populated into out `Metagenomes` **BioMetaDB** pro
 We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
-
-In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-demo-part-3/), we will explore **BioMetaDB** and its core functionality, which is (in my opinion) the biggest reason to use **MetaSanity**

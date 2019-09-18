@@ -102,7 +102,9 @@ Once **PhyloSanity** is complete, the project directory structure will resemble 
 ├── Metagenomes/
 └── PhyloSanity.ini</code></pre>
 
-The `out` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all raw data stored in a `SQLite3` database.
+The `out/` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all raw data stored in a `SQLite3` database.
+
+Within the `out/` directory are results directories for each output, labeled as `checkm_results`, etc. Also, running **PhyloSanity** generated a citations file that describes all of the analyses that were run in this pipeline.
 
 We can generate a quick summary of this data using a command-line query:
 
