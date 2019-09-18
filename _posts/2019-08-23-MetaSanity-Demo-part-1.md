@@ -26,6 +26,8 @@ MetaSanity demo
 ======
 This blog post will walk through the data analysis pipelines available in **MetaSanity** using a small set of publicly available metagenomic-assembled genomes (MAGs). This post assumes that the Docker version of **MetaSanity** is being used; however, the source code users can reference this post so long as they use the valid source code configuration files from the [github repo](https://github.com/cjneely10/MetaSanity).
 
+For even more usage examples, see [MetaSanity's usage page](https://github.com/cjneely10/MetaSanity/wiki/3-Usage).
+
 For this blog, I have selected a group of genomes of variable quality and completion/contamination, including some redundant genomes. I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" as either 1) having no genomes in the data set with whom its percent average nucleotide identity (%ANI) is greater than or equal to 98.5, or 2) having &ge;1 separate genome share &ge;98.5% ANI, but having the maximum completion percent of the copies.
 Once this is complete, I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
 Finally. I will explore the results of my work by using the **BioMetaDB** SQL interface.
