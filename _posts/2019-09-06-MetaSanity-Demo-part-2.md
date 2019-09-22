@@ -38,11 +38,13 @@ The config file `FuncSanity.ini` can be used as-is; however, users may add addit
 
 ![](https://cjneely10.github.io/files/FuncSanity-pre-2.png)
 
-For this blog, I have access to a server that is powerful enough to handle multi-threading and high-memory programs. So, I will increase the number of threads on all of my programs and will remove any options that reduce memory usage. At this step, users should provide settings that are suitable to their working environments.
+As before, I will now edit this configuration file to match the specifications of my system. For this analysis, I am not interested in predicting protein domains, and I only want to use SignalP in my extracellular peptidase annotation.
 
-I will be running all available analyses within FuncSanity except for InterProScan. I will also only use SignalP during my Peptidase annotation pipeline.
+The `FuncSanity.ini` config file currently has SignalP commented out, so I will uncomment this section by removing the two `#` characters preceding the SignalP lines.
 
-No flags need to be changed, but I will raise the thread count on each applicable program to better match my server.
+InterProScan is set an an optional program and thus its section is commented out by default.
+
+I will raise the thread count on each applicable program to better match my server, but no other flags need to be changed.
 
 ![](https://cjneely10.github.io/files/FuncSanity-post-1.png)
 
@@ -99,4 +101,6 @@ We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
 
-In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-demo-part-3/), we will explore **BioMetaDB** and its core functionality, which is (in my opinion) the biggest reason to use **MetaSanity**
+At this point, the **MetaSanity** pipeline is complete. If I decided to later incorporate PSORTb or InterProScan, I can simply update my `FuncSanity.ini` config file and rerun with the same command as above.
+
+In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-demo-part-3/), we will explore **BioMetaDB** and its core functionality, which is (in my opinion) the biggest reason to use **MetaSanity**.
