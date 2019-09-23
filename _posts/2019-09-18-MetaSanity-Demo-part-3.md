@@ -104,7 +104,6 @@ Luckily, **MetaSanity** does most of the database creation and updating that is 
 1. Write simple queries for annotation results.
 ------
 
-Let's take a peek at the results of **PhyloSanity**
+Let's take a peek at the summary results of **PhyloSanity**
 
-`dbdm -c Metagenomes SUMMARIZE`
-
+`dbdm -c Metagenomes SUMMARIZE -t functions | less -S`
