@@ -20,12 +20,11 @@ Goals
 ------
 In this blog, we will explore the completed results of **MetaSanity**. Specifically,
 
-1. Write simple queries for annotation results.
-2. Create more complex queries that incorporate evaluation metrics.
-3. Generate complete annotation and evaluation summaries.
-4. Link putative metabolic function with annotation or evaluation summaries.
-5. Output relevant FASTA records to directory.
-6. Incorporate additional analyses into a database table
+1. Create more complex queries that incorporate evaluation metrics.
+2. Generate complete annotation and evaluation summaries.
+3. Link putative metabolic function with annotation or evaluation summaries.
+4. Output relevant FASTA records to directory.
+5. Incorporate additional analyses into a database table
 
 About
 ------
@@ -114,9 +113,3 @@ optional arguments:
 
 Luckily, **MetaSanity** does most of the database creation and updating that is needed, leaving for us a finalized database that is ready for analysis. We can always add additional tables, or remove tables as needed. But, for this blog, we will focus on the `SUMMARIZE` option of **BioMetaDB**, which provides us an interface for handling all project queries. If you wish to learn more about additional functionality available to **BioMetaDB**, please visit its [github page]([BioMetaDB](https://github.com/cjneely10/BioMetaDB)).
 
-1. Write simple queries for annotation results.
-------
-
-Let's take a peek at the summary results of **PhyloSanity**
-
-`dbdm -c Metagenomes SUMMARIZE -t functions | less -S`
