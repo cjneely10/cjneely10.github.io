@@ -91,16 +91,14 @@ Once **FuncSanity** is complete, the project directory structure will resemble t
 ├── Metagenomes/
 └── PhyloSanity.ini</code></pre>
 
-**FuncSanity** ran its pipeline using the existing `out/` directory and added its output to that directory. It also generated a new citations file.
+**FuncSanity** ran its pipeline using the existing `out/` directory and added its output to that directory. It also generated a new citations file. At this point, the **MetaSanity** pipeline is complete. If I decided to later incorporate PSORTb or InterProScan, I can simply update my `FuncSanity.ini` config file and rerun with the same command as above.
 
-Within the `out/` directory, each input genome will have its own tab-delimited output file that ends in `.metagenome_annotation.tsv`. If the peptidase annotation was run, then summary data is in the `peptidase_results/combined_results` folder. Also, if the KEGG pathway annotation was run, then summary data is in `kegg_results/biodata_results`.
-
-However, all of this data was populated into out `Metagenomes` **BioMetaDB** project.
+Within the `out/` directory, each input genome will have its own tab-delimited output file that ends in `.metagenome_annotation.tsv`. If the peptidase annotation was run, then summary data is in the `peptidase_results/combined_results` folder. Also, if the KEGG pathway annotation was run, then summary data is in `kegg_results/biodata_results`. However, all of this data was populated into out `Metagenomes` **BioMetaDB** project.
 
 We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
 
-At this point, the **MetaSanity** pipeline is complete. If I decided to later incorporate PSORTb or InterProScan, I can simply update my `FuncSanity.ini` config file and rerun with the same command as above.
+Depending on the number of genomes, a good deal of output will display on your terminal. This is great, but it would be very helpful to be able to work with and manipulate this data. **BioMetaDB** steps in to provide a simple command-line interface for accessing your data quickly and easily.
 
 In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-demo-part-3/), we will explore **BioMetaDB** and its core functionality, which is (in my opinion) the biggest reason to use **MetaSanity**.
