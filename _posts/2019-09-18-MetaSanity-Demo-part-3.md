@@ -23,13 +23,26 @@ In this blog, we will explore the completed results of **MetaSanity**. Specifica
 1. Write simple queries for annotation results.
 2. Create more complex queries that incorporate evaluation metrics.
 3. Generate complete annotation and evaluation summaries.
-4. Output relevant FASTA records to directory.
+4. Link putative metabolic function with annotation or evaluation summaries.
+5. Output relevant FASTA records to directory.
+6. Incorporate additional analyses into a database table
 
 About
 ------
 **BioMetaDB**, accessible through the script `MetaSanity/BioMetaDB/dbdm.py` of your MetaSanity installation, is a database generator. This package manages FASTA files and data files that describe them, handling all CRUD operations and providing a simple command-line interface.
 
-Let's take a look at BioMetaDB's (admittedly involved) usage statement. You can find additional information [here](https://github.com/cjneely10/BioMetaDB) and additional examples [here](https://github.com/cjneely10/BioMetaDB/tree/master/Example).
+
+**MetaSanity** output
+------
+If you've been following this blog, both pipelines in **MetaSanity** are now complete at this point, and we have a **BioMetaDB** project names `Metagenomes` to use. Within this directory are two summary database tables as well as an extra table for each genome that was processed. **PhyloSanity** outputs the summary table named `evaluation`, and **FuncSanity** outputs the summary table named `functions` if either the KEGG Pathway annotation or Peptidase annotation were completed.
+
+You can view these tables easily using:
+
+`dbdm -c Metagenomes SUMMARIZE -t evaluation`
+
+`dbdm -c Metagenomes SUMMARIZE -t functions`
+
+While this is definitely useful, **BioMetaDB** offers a far wider range of query options. Let's take a look at BioMetaDB's (admittedly involved) usage statement. You can find additional information [here](https://github.com/cjneely10/BioMetaDB) and additional examples [here](https://github.com/cjneely10/BioMetaDB/tree/master/Example).
 
 
 BioMetaDB Usage
