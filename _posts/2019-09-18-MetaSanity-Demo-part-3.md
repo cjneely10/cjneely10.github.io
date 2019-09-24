@@ -117,8 +117,8 @@ Great! Even on a simple level, we can begin to see some potential utility. If we
 
 Let's start working on some of these goals!
 
-1. Link evaluation with annotation
-======
+Link evaluation with annotation
+------
 
 Working with metagenomic requires researchers to take added care to ensure genome quality and minimize genome redundancy. **BioMetaDB** makes it very easy to handle these queries directly from the command line. Consider the following command:
 
@@ -143,8 +143,8 @@ Here are a few more examples:
 `dbdm -c Metagenomes SUMMARIZE -q "is_non_redundant ~> cazy_annot"`
 
 
-2. Link putative metabolic function with annotation.
-======
+Link putative metabolic function with annotation.
+------
 
 For researchers interested in metabolic function, gathering gene calls for genomes predicted to fulfill a particular pathway is useful for further downstream analysis.
 
@@ -175,8 +175,8 @@ Here are a few more examples:
 `dbdm -c Metagenomes SUMMARIZE -q "sulfur_assimilation == 1 -> annotated"`
 
 
-3. Link evaluation and putative metabolic function.
-======
+Link evaluation and putative metabolic function.
+------
 
 In fine-tuning one's data, it may be useful to investigate evaluation and metabolic functions simultaneously. To do this, we introduce one final **query operator** in the following command:
 
@@ -187,8 +187,8 @@ As expected, this command looks for genomes that are determined to be complete a
 In general, **we can link `evaluation` and `functions`** using the format `evaluation query >> functions query`.
 
 
-4. Create comprehensive query statements.
-======
+Create comprehensive query statements.
+------
 
 Awesome! Our final goal in this blog is to link all three of our database tables together - metagenome evaluation, metabolic functions, and genome-specific annotations.
 
