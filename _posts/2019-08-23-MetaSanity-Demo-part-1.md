@@ -130,6 +130,8 @@ Quick note about queries:
 	- `-q "redundant_copies != '[]'"` to get genomes with redundant copies (note the quotes around strings)
 	- `-q "completion > 90.0"` for genomes whose completion score is above a certain value (note the lack of quotes around the number)
 
+- In order to prevent name issues with either Python or SQL, the "class" and "order" columns are replaced by "\_class" and "\_order", respectively.
+
 Let's change some of these filtering criteria and rerun **MetaSanity**. We can adjust the `COMPLETION` value in `PhyloSanity.ini` to be lower - in this case, 70% - by replacing the line `IS_COMPLETE = 90` to `IS_COMPLETE = 70`.
 
 Rerun **PhyloSanity** with this adjusted config file:
