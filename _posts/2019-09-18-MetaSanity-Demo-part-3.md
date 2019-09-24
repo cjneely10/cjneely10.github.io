@@ -75,6 +75,25 @@ SUMMARIZE: Summarize project and query data. Write records or metadata to file
 
 Viewing a BioMetaDB project requires, at the very minimum, a valid **BioMetaDB** project. Aside from that, users are able to provide filtering to fit their needs.
 
+Quick notes
+------
+
+- For genome tables (ex. tobg-cpc-85, etc.), we can do the following in our queries:
+    - Add `_annot` to columns in the 2nd section of our database table - `ko_annot`, `prokka_annot`, etc.
+    - Search for gene calls with at least one annotation using `annotated`.
+- In the evaluation table, we can the the following:
+    - Use `hqnr` to search for high quality, non-redundant genomes.
+- In every other case, we treat data with the following considerations:
+    - Quote string data within the query, ex: `-q "cazy == 'GT41'"`.
+    - Treat columns that begin with `is_` as Boolean, ex: `-q is_complete`.
+- Use simple comparison statements as needed
+    - `==`, `<`, `>`, `<=`, `>=`, `!=`, `AND`, `OR`, `NOT`
+- Ensure proper query formatting
+    - Provide adequate spacing, as needed:
+        - `"is_completeANDdomain == 'Bacteria'"` would fail, whereas `"is_complete AND domain == 'Bacteria'"` is valid.
+        - `"is_complete~>ko_annot"` can lead to issues, but `"is_complete ~> ko_annot"` is perfect.
+            - We will cover the `~>` **query operator** in a later section of this blog.
+
 Before we start working through this blog's goals, let's explore a couple of examples.
 
 Simple examples
@@ -88,9 +107,9 @@ View a summary of gene calls for TOBG-CPC-51 that were given annotations by **Fu
 
 `dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q annotated`
 
-View a summary of all genomes that at least a partial glycolysis pathway.
+View a summary of all genomes that at least a partial glycolysis or chemotaxis pathway.
 
-`dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0"`
+`dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0"`
 
 View a summary of gene calls for TOBG-CPC-51 that have both KO and MEROPS-Pfam annotations.
 
@@ -114,6 +133,7 @@ View a list of all of the columns in each table of the database.
 
 
 Great! Even on a simple level, we can begin to see some potential utility. If we were to couple any of the above examples with `-w out_fna` or `-x prefix`, then we could store all matching fasta records to an external directory, or generate a summary tab-delimited data file of all database table information, respectively.
+
 
 Let's start working on some of these goals!
 
