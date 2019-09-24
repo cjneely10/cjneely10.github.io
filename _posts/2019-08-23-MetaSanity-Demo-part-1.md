@@ -65,7 +65,52 @@ Copy the default configuration file from your program package into your project 
 
 The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. Edit the config file using `nano PhyloSanity.ini`.
 
-![](https://cjneely10.github.io/files/phylosanity-ini.png)
+<!-- ![](https://cjneely10.github.io/files/phylosanity-ini.png) -->
+<pre><code># Docker/PhyloSanity.ini
+# Default config file for running the FuncSanity pipeline
+# DO NOT edit any PATH, DATA, or DATA_DICT variables
+# Users are recommended to edit copies of this file only
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipes **MUST** be set
+
+[CHECKM]
+PATH = /usr/local/bin/checkm
+# Do not remove this next flag
+--tmpdir = /home/appuser/tmp_dir
+--aai_strain = 0.95
+-t = 1
+--pplacer_threads = 1
+FLAGS = --reduced_tree
+
+[FASTANI]
+PATH = /usr/bin/fastANI
+--fragLen = 1500
+
+[BIOMETADB]
+--db_name = Metagenomes
+--table_name = evaluation
+--alias = eval
+FLAGS = -s
+
+[CUTOFFS]
+ANI = 98.5
+IS_COMPLETE = 50
+IS_CONTAMINATED = 5
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipe sections may optionally be set
+# Ensure that the entire pipe section is valid,
+# or deleted/commented out, prior to running pipeline
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Phylogeny prediction
+
+[GTDBTK]
+PATH = /usr/local/bin/gtdbtk
+--cpus = 1</code></pre>
 
 For this blog, I have access to a server that is powerful enough to handle multi-threading and high-memory programs. So, I will increase the number of threads on all of my programs and will remove any options that reduce memory usage. At this step, users should provide settings that are suitable to their working environments.
 
@@ -77,7 +122,50 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and non-redundant. This demo will use the values listed above (completion &ge;90%, contamination &le;5%, ANI &ge;98.5%), so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`.
 
-![](https://cjneely10.github.io/files/phylosanity-ini-post.png)
+<!-- ![](https://cjneely10.github.io/files/phylosanity-ini-post.png) -->
+<pre><code># Default config file for running the FuncSanity pipeline
+# DO NOT edit any PATH, DATA, or DATA_DICT variables
+# Users are recommended to edit copies of this file only
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipes **MUST** be set
+
+[CHECKM]
+PATH = /usr/local/bin/checkm
+--tmpdir = /home/appuser/tmp_dir
+--aai_strain = 0.95
+-t = 4
+--pplacer_threads = 1
+FLAGS = --reduced_tree
+
+[FASTANI]
+PATH = /usr/bin/fastANI
+--fragLen = 1500
+
+[BIOMETADB]
+--db_name = Metagenomes
+--table_name = evaluation
+--alias = eval
+FLAGS = -s
+
+[CUTOFFS]
+ANI = 98.5
+IS_COMPLETE = 90
+IS_CONTAMINATED = 5
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipe sections may optionally be set
+# Ensure that the entire pipe section is valid,
+# or deleted/commented out, prior to running pipeline
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Phylogeny prediction
+
+[GTDBTK]
+PATH = /usr/local/bin/gtdbtk
+--cpus = 1</code></pre>
 
 Running PhyloSanity
 ------
@@ -110,7 +198,7 @@ We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
 
-![](https://cjneely10.github.io/files/phylosanity-ini-1.png)
+<!-- ![](https://cjneely10.github.io/files/phylosanity-ini-1.png) -->
 
 The database summary output is fairly self-explanatory - this table is named "evaluation", which was given to it by the settings in the `BIOMETADB` section of the `PhyloSanity.ini` config file that we used to run the pipeline. The number of records corresponds to the number of genomes evaluated. Averages and standard deviations are provided for numerical data categories. For text and boolean data categories, frequency values are provided - e.g., the most frequently occurring value, the number of times that value occurred, and the total number of nun-null values in that category.
 
@@ -120,7 +208,7 @@ In fact, if we query the results for high quality, non-redundant genomes, we can
 
 `dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr`
 
-![](https://cjneely10.github.io/files/phylosanity-ini-2.png)
+<!-- ![](https://cjneely10.github.io/files/phylosanity-ini-2.png) -->
 
 Quick note about queries:
 
@@ -144,7 +232,36 @@ Let's query the database to see the results of this change in the completion fil
 
 `dbdm SUMMARIZE -c Metagenomes -t evaluation`
 
-![](https://cjneely10.github.io/files/phylosanity-ini-3.png)
+<!-- ![](https://cjneely10.github.io/files/phylosanity-ini-3.png) -->
+<pre><code>SUMMARIZE:	View summary of all tables in database
+ Project root directory:	Metagenomes
+ Name of database:		Metagenomes.db
+
+*******************************************************************************************
+	     Table Name:	evaluation  
+	Number of Records:	        10/10        
+
+	        Database	Average             	Std Dev     
+
+	      completion	92.882              	4.817       
+	   contamination	3.365               	2.574       
+-------------------------------------------------------------------------------------------
+
+	        Database	Most Frequent       	Number    	Total Count 
+
+	          _class	Phycisphaerales     	4         	10          
+	          _order	SM1A02              	4         	10          
+	          domain	Bacteria            	10        	10          
+	          family	Gimesia             	2         	10          
+	           genus	Gimesia             	2         	10          
+	     is_complete	True                	10        	10          
+	 is_contaminated	False               	7         	10          
+	is_non_redundant	True                	10        	10          
+	         kingdom	Planctomycetota     	10        	10          
+	          phylum	Phycisphaerae       	4         	10          
+	redundant_copies	[]                  	10        	10          
+	         species	sp002684755         	1         	10          
+-------------------------------------------------------------------------------------------</code></pre>
 
 With the new criteria, the number of genomes that are deemed 'complete' has increased. We can see this in the row named `is_complete`, which now verifies that a higher number of genomes passed the lower completion filter.
 
@@ -152,7 +269,37 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 
 `dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr`
 
-![](https://cjneely10.github.io/files/phylosanity-ini-4.png)
+<!-- ![](https://cjneely10.github.io/files/phylosanity-ini-4.png) -->
+<pre><code>SUMMARIZE:	View summary of all tables in database
+ Project root directory:	Metagenomes
+ Name of database:		Metagenomes.db
+
+*******************************************************************************************
+	     Table Name:	evaluation  
+	Number of Records:	         7/10        
+
+	        Database	Average             	Std Dev     
+
+	      completion	93.377              	3.646       
+	   contamination	1.980               	0.806       
+-------------------------------------------------------------------------------------------
+
+	        Database	Most Frequent       	Number    	Total Count 
+
+	          _class	Phycisphaerales     	2         	7           
+	          _order	Planctomycetaceae...	2         	7           
+	          domain	Bacteria            	7         	7           
+	          family	Gimesia             	2         	7           
+	           genus	Gimesia             	2         	7           
+	     is_complete	True                	7         	7           
+	 is_contaminated	False               	7         	7           
+	is_non_redundant	True                	7         	7           
+	         kingdom	Planctomycetota     	7         	7           
+	          phylum	Phycisphaerae       	2         	7           
+	redundant_copies	[]                  	7         	7           
+	         species	maris               	1         	7           
+-------------------------------------------------------------------------------------------</code></pre>
+
 
 Great! Let's output these sequences to a separate folder - in this case, I will name it `HighQuality` - and focus our annotation pipeline on this subset. 
 
