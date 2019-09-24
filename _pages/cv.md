@@ -88,11 +88,7 @@ Skills
 * Public Speaking
   * Local parliamentary debate competitions
   * Research poster competitions
-* Laboratory
-  * 92nd percentile in ACS organic chemistry exam
-  * Epifluorescence microscopy
-  * Anaerobic cultivation and metabolic assays (ferrozine, etc.)
-  * Analytical chemistry
+* General chemistry and biology laboratory skills
 * Music and Art
   * Clarinet
   * Former music major - piano
