@@ -24,7 +24,7 @@ Internships
   * Mentor: John Heidelberg, Ph.D, and Ben Tully, Ph.D
 * 06/2018 - 08/2018: Bioinformatics Intern
   * Cornell University, New York
-  * Boyce Thompson Institute
+  * [Boyce Thompson Institute](https://btiscience.org/educational-programs/internships/interns/neely/)
   * Summer Research Experience for Undergraduates
   * Created a pangenome for *Solanum habrochaites*.
   * Mentor: Zhangjun Fei, Ph.D, and Lei Gao, Ph.D
