@@ -38,6 +38,36 @@ You can view these tables easily using:
 
 `dbdm -c Metagenomes SUMMARIZE -t evaluation`
 
+<pre><code>SUMMARIZE: View summary of all tables in database
+ Project root directory:  Metagenomes
+ Name of database:    Metagenomes.db
+
+*******************************************************************************************
+       Table Name:  evaluation  
+  Number of Records:          10/10        
+
+          Database  Average               Std Dev     
+
+        completion  92.882                4.817       
+     contamination  3.365                 2.574       
+-------------------------------------------------------------------------------------------
+
+          Database  Most Frequent         Number      Total Count 
+
+            _class  Phycisphaerales       4           10          
+            _order  SM1A02                4           10          
+            domain  Bacteria              10          10          
+            family  Gimesia               2           10          
+             genus  Gimesia               2           10          
+       is_complete  True                  10          10          
+   is_contaminated  False                 7           10          
+  is_non_redundant  True                  10          10          
+           kingdom  Planctomycetota       10          10          
+            phylum  Phycisphaerae         4           10          
+  redundant_copies  []                    10          10          
+           species  sp002684655           1           10          
+-------------------------------------------------------------------------------------------</code></pre>
+
 `dbdm -c Metagenomes SUMMARIZE -t functions`
 
 While this is definitely useful, **BioMetaDB** offers a far wider range of query options. You can find additional information [here](https://github.com/cjneely10/BioMetaDB) and additional examples [here](https://github.com/cjneely10/BioMetaDB/tree/master/Example).
@@ -59,6 +89,33 @@ View a summary of gene calls for TOBG-CPC-51 that were given annotations by **Fu
 
 `dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q annotated`
 
+<pre><code>SUMMARIZE:   View summary of all tables in database
+ Project root directory:    Metagenomes
+ Name of database:      Metagenomes.db
+
+**********************************************************************************************
+            Table Name: tobg-cpc-51 
+    Number of Records:        1749/4167      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.000                   0.000       
+    num_phage_contigs_2 0.002                   0.072       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    GT41                    23          106         
+    is_extracellular    False                   1715        1746        
+                  ko    K08884                  25          1387        
+         merops_pfam    PF00082                 9           132         
+              prokka    atsA_12                 19          567         
+-------------------------------------------------------------------------------------------</code></pre>
+
 View a summary of all genomes that at least a partial glycolysis or chemotaxis pathway.
 
 `dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0"`
@@ -66,6 +123,27 @@ View a summary of all genomes that at least a partial glycolysis or chemotaxis p
 View a summary of gene calls for TOBG-CPC-51 that have both KO and MEROPS-Pfam annotations.
 
 `dbdm -c Metagenomes SUMMARIZE -t tobg-np-997 -q "ko_annot AND merops_pfam_annot"`
+
+<pre><code>SUMMARIZE:   View summary of all tables in database
+ Project root directory:    Metagenomes
+ Name of database:      Metagenomes.db
+
+**********************************************************************************************
+            Table Name: tobg-cpc-51 
+    Number of Records:          63/4167      
+
+               Database Average                 Std Dev     
+
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    CE10                    1           1           
+    is_extracellular    False                   53          63          
+                  ko    K07263                  3           63          
+         merops_pfam    PF00117                 4           63          
+              prokka    map_1                   1           17          
+-------------------------------------------------------------------------------------------</code></pre>
 
 View a list of all unique KO values assigned to TOBG-CPC-96 gene calls.
 
@@ -143,6 +221,36 @@ Working with metagenomic requires researchers to take added care to ensure genom
 
 `dbdm -c Metagenomes SUMMARIZE -t evaluation -q is_complete`
 
+<pre><code>SUMMARIZE:   View summary of all tables in database
+ Project root directory:    Metagenomes
+ Name of database:      Metagenomes.db
+
+*******************************************************************************************
+         Table Name:    evaluation  
+    Number of Records:          10/10        
+
+            Database    Average                 Std Dev     
+
+          completion    92.882                  4.817       
+       contamination    3.365                   2.574       
+-------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+              _class    Phycisphaerales         4           10          
+              _order    SM1A02                  4           10          
+              domain    Bacteria                10          10          
+              family    Gimesia                 2           10          
+               genus    Gimesia                 2           10          
+         is_complete    True                    10          10          
+     is_contaminated    False                   7           10          
+    is_non_redundant    True                    10          10          
+             kingdom    Planctomycetota         10          10          
+              phylum    Phycisphaerae           4           10          
+    redundant_copies    []                      10          10          
+             species    sp002683825             1           10          
+-------------------------------------------------------------------------------------------</code></pre>
+
 As expected, this command will query the evaluation table for genomes whose Boolean 'is_complete' value is set to True - e.g., genomes that were determined to be complete as part of the **PhyloSanity** pipeline. Coupling this with `-w out_fna` or `-x complete_genomes.tsv` would output all genomes to a directory named `out_fna` and provide genome evaluation summaries in the file `complete_genomes.tsv`, respectively.
 
 Handy. Let's introduce a **query operator** - a specific delimiter that allows us to link our database tables. Consider if we wanted to gather a summary of all extracellular peptidases that were identified during **FuncSanity**, but we only want this information for our genomes deemed to be complete. This is easily accomplished with the following command:
@@ -156,6 +264,165 @@ In general, **we can link `evaluation` and `annotation`** using the format `eval
 Here are a few more examples:
 
 `dbdm -c Metagenomes SUMMARIZE -q "hqnr ~> annotated"`
+
+<pre><code>SUMMARIZE:   View summary of all tables in database
+ Project root directory:    Metagenomes
+ Name of database:      Metagenomes.db
+
+**********************************************************************************************
+            Table Name: tobg-cpc-51 
+    Number of Records:        1749/4167      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.000                   0.000       
+    num_phage_contigs_2 0.002                   0.072       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    GT41                    23          106         
+    is_extracellular    False                   1715        1746        
+                  ko    K08884                  25          1387        
+         merops_pfam    PF00082                 9           132         
+              prokka    atsA_12                 19          567         
+-------------------------------------------------------------------------------------------
+
+**********************************************************************************************
+            Table Name: tobg-cpc-31 
+    Number of Records:        2389/5988      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.001                   0.029       
+    num_phage_contigs_2 0.006                   0.096       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    CE10                    13          126         
+    is_extracellular    False                   2339        2359        
+                  ko    K02456                  43          1690        
+         merops_pfam    PF05569                 14          123         
+              prokka    rcsC_19                 13          1593        
+-------------------------------------------------------------------------------------------
+
+**********************************************************************************************
+            Table Name: tobg-cpc-96 
+    Number of Records:        1170/2656      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.000                   0.000       
+    num_phage_contigs_2 0.000                   0.000       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    GT4                     5           51          
+    is_extracellular    False                   1152        1166        
+                  ko    K08884                  12          993         
+         merops_pfam    PF00082                 7           77          
+              prokka    pknD_10                 8           526         
+-------------------------------------------------------------------------------------------
+
+*******************************************************************************************
+         Table Name:    tobg-cpc-3  
+    Number of Records:        1455/2978      
+
+            Database    Average                 Std Dev     
+
+-------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    GT4                     11          78          
+    is_extracellular    False                   1429        1455        
+                  ko    K02004                  15          1082        
+         merops_pfam    PF04389                 12          108         
+              prokka    atsA_18                 15          914         
+-------------------------------------------------------------------------------------------
+
+**********************************************************************************************
+            Table Name: tobg-cpc-9  
+    Number of Records:        1914/4282      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.002                   0.091       
+    num_phage_contigs_2 0.000                   0.000       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    GT4                     20          100         
+    is_extracellular    False                   1858        1904        
+                  ko    K08884                  18          1433        
+         merops_pfam    PF00326                 12          139         
+              prokka    atsA_22                 14          1082        
+-------------------------------------------------------------------------------------------
+
+**********************************************************************************************
+            Table Name: tobg-cpc-85 
+    Number of Records:        1365/2980      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.000                   0.000       
+    num_phage_contigs_2 0.000                   0.000       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    GT2                     7           69          
+    is_extracellular    False                   1342        1364        
+                  ko    K08884                  10          1045        
+         merops_pfam    PF00326                 6           94          
+              prokka    xpsE_2                  10          750         
+-------------------------------------------------------------------------------------------
+
+**********************************************************************************************
+            Table Name: tobg-np-99  
+    Number of Records:        2509/6573      
+
+               Database Average                 Std Dev     
+
+    num_phage_contigs_1 0.000                   0.000       
+    num_phage_contigs_2 0.000                   0.000       
+    num_phage_contigs_3 0.000                   0.000       
+        num_prophages_1 0.000                   0.000       
+        num_prophages_2 0.000                   0.000       
+        num_prophages_3 0.000                   0.000       
+----------------------------------------------------------------------------------------------
+
+            Database    Most Frequent           Number      Total Count 
+
+                cazy    CE10                    16          137         
+    is_extracellular    False                   2478        2504        
+                  ko    K02456                  49          1953        
+         merops_pfam    PF05569                 15          133         
+              prokka    zraR_6                  9           1251        
+-------------------------------------------------------------------------------------------</code></pre>
 
 `dbdm -c Metagenomes SUMMARIZE -q "NOT is_contaminated ~> prokka_annot"`
 
