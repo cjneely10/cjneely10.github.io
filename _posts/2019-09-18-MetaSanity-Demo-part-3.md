@@ -46,54 +46,6 @@ Were we to run `dbdm -h`, we would see a large help statement that explains how 
 
 For this blog, we will focus on the `SUMMARIZE` option of **BioMetaDB**, which provides us an interface for handling all project queries. If you wish to learn more about additional functionality available to **BioMetaDB**, please visit its [github page]([BioMetaDB](https://github.com/cjneely10/BioMetaDB)).
 
-
-`dbdm SUMMARIZE`
-------
-
-Let's focus on the sections of `dbdm`'s help statement that relates to `SUMMARIZE`:
-
-<pre><code>...
-SUMMARIZE: Summarize project and query data. Write records or metadata to file
-    (Req:  --config_file --view --query --table_name --alias --write --write_tsv --unique)
-...
-  -t TABLE_NAME, --table_name TABLE_NAME
-                        Name of database table
-  -c CONFIG_FILE, --config_file CONFIG_FILE
-                        /path/to/BioMetaDB-project-directory
-  -a ALIAS, --alias ALIAS
-                        Provide alias for locating and creating table class
-  -v VIEW, --view VIEW  View (c)olumns or (t)ables with SUMMARIZE                        
-  -q QUERY, --query QUERY
-                        evaluation ~> genome; function -> gen; eval >> fxn; eval ~> fxn -> gen;
-  -u UNIQUE, --unique UNIQUE
-                        View unique values of column using SUMMARIZE                        
-  -w WRITE, --write WRITE
-                        Write fastx records from SUMMARIZE to outfile
-  -x WRITE_TSV, --write_tsv WRITE_TSV
-                        Write table record metadata from SUMMARIZE to outfile
-  -p PATH, --path PATH  New path for moving project in MOVE command</code></pre>
-
-Viewing a BioMetaDB project requires, at the very minimum, a valid **BioMetaDB** project. Aside from that, users are able to provide filtering to fit their needs.
-
-Quick notes
-------
-
-- For genome tables (ex. tobg-cpc-85, etc.), we can do the following in our queries:
-    - Add `_annot` to columns in the 2nd section of our database table - `ko_annot`, `prokka_annot`, etc.
-    - Search for gene calls with at least one annotation using `annotated`.
-- In the evaluation table, we can the the following:
-    - Use `hqnr` to search for high quality, non-redundant genomes.
-- In every other case, we treat data with the following considerations:
-    - Quote string data within the query, ex: `-q "cazy == 'GT41'"`.
-    - Treat columns that begin with `is_` as Boolean, ex: `-q is_complete`.
-- Use simple comparison statements as needed
-    - `==`, `<`, `>`, `<=`, `>=`, `!=`, `AND`, `OR`, `NOT`
-- Ensure proper query formatting
-    - Provide adequate spacing, as needed:
-        - `"is_completeANDdomain == 'Bacteria'"` would fail, whereas `"is_complete AND domain == 'Bacteria'"` is valid.
-        - `"is_complete~>ko_annot"` can lead to issues, but `"is_complete ~> ko_annot"` is perfect.
-            - We will cover the `~>` **query operator** in a later section of this blog.
-
 Before we start working through this blog's goals, let's explore a couple of examples.
 
 Simple examples
@@ -135,7 +87,54 @@ View a list of all of the columns in each table of the database.
 Great! Even on a simple level, we can begin to see some potential utility. If we were to couple any of the above examples with `-w out_fna` or `-x prefix`, then we could store all matching fasta records to an external directory, or generate a summary tab-delimited data file of all database table information, respectively.
 
 
+Quick notes
+------
+
+- For genome tables (ex. tobg-cpc-85, etc.), we can do the following in our queries:
+    - Add `_annot` to columns in the 2nd section of our database table - `ko_annot`, `prokka_annot`, etc.
+    - Search for gene calls with at least one annotation using `annotated`.
+- In the evaluation table, we can the the following:
+    - Use `hqnr` to search for high quality, non-redundant genomes.
+- In every other case, we treat data with the following considerations:
+    - Quote string data within the query, ex: `-q "cazy == 'GT41'"`.
+    - Treat columns that begin with `is_` as Boolean, ex: `-q is_complete`.
+- Use simple comparison statements as needed
+    - `==`, `<`, `>`, `<=`, `>=`, `!=`, `AND`, `OR`, `NOT`
+- Ensure proper query formatting
+    - Provide adequate spacing, as needed:
+        - `"is_completeANDdomain == 'Bacteria'"` would fail, whereas `"is_complete AND domain == 'Bacteria'"` is valid.
+        - `"is_complete~>ko_annot"` can lead to issues, but `"is_complete ~> ko_annot"` is perfect.
+            - We will cover the `~>` **query operator** in a later section of this blog.
+
+
+`dbdm SUMMARIZE`
+------
+
+Viewing a BioMetaDB project requires, at the very minimum, a valid **BioMetaDB** project. Aside from that, users are able to provide additional flags as needed. Let's peek at the sections of `dbdm`'s help statement that relates to `SUMMARIZE`:
+
+<pre><code>...
+SUMMARIZE: Summarize project and query data. Write records or metadata to file
+    (Req:  --config_file --view --query --table_name --alias --write --write_tsv --unique)
+...
+  -t TABLE_NAME, --table_name TABLE_NAME
+                        Name of database table
+  -c CONFIG_FILE, --config_file CONFIG_FILE
+                        /path/to/BioMetaDB-project-directory
+  -a ALIAS, --alias ALIAS
+                        Provide alias for locating and creating table class
+  -v VIEW, --view VIEW  View (c)olumns or (t)ables with SUMMARIZE                        
+  -q QUERY, --query QUERY
+                        evaluation ~> genome; function -> gen; eval >> fxn; eval ~> fxn -> gen;
+  -u UNIQUE, --unique UNIQUE
+                        View unique values of column using SUMMARIZE                        
+  -w WRITE, --write WRITE
+                        Write fastx records from SUMMARIZE to outfile
+  -x WRITE_TSV, --write_tsv WRITE_TSV
+                        Write table record metadata from SUMMARIZE to outfile
+  -p PATH, --path PATH  New path for moving project in MOVE command</code></pre>
+
 Let's start working on some of these goals!
+
 
 Link evaluation with annotation
 ------
