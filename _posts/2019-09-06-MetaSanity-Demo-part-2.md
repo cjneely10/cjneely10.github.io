@@ -15,13 +15,13 @@ Project preparation
 ======
 We are continuing our work in the directory `$HOME/test-run`. After the last blog, the contents of this directory should resemble the following:
 
-<code>test-run/
+<pre><code>test-run/
 ├── genomes/
 ├── HighQuality/
 ├── eval.log
 ├── out/
 ├── Metagenomes/
-└── PhyloSanity.ini</code>
+└── PhyloSanity.ini</code></pre>                         
 
 Part 2 - FuncSanity
 ======
