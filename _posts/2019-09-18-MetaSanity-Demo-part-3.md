@@ -120,7 +120,7 @@ View a summary of all genomes that at least a partial glycolysis or chemotaxis p
 
 `dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0"`
 
-View a summary of gene calls for TOBG-CPC-51 that have both KO and MEROPS-Pfam annotations.
+View a summary of gene calls for TOBG-CPC-997 that have both KO and MEROPS-Pfam annotations.
 
 `dbdm -c Metagenomes SUMMARIZE -t tobg-np-997 -q "ko_annot AND merops_pfam_annot"`
 
