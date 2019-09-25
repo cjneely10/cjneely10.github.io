@@ -235,7 +235,7 @@ The database summary output is fairly self-explanatory - this table is named "ev
 
 This is great, but our completion requirement of 90% may be a bit strict for this dataset - only a small number of the initial genomes are of sufficient completion to be used downstream. 
 
-In fact, if we query the results for high quality, non-redundant genomes, we can see that very few passed the combined filtering values:
+In fact, if we query the results for high quality, non-redundant genomes, we can see that only half of the dataset passed the combined filtering values:
 
 `dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr`
 
