@@ -122,8 +122,11 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and non-redundant. This demo will use the values listed above (completion &ge;90%, contamination &le;5%, ANI &ge;98.5%), so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`.
 
+After these changes, the **PhyloSanity** config file should resemble the following:
+
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-post.png) -->
-<pre><code># Default config file for running the FuncSanity pipeline
+<pre><code># Docker/PhyloSanity.ini
+# Default config file for running the FuncSanity pipeline
 # DO NOT edit any PATH, DATA, or DATA_DICT variables
 # Users are recommended to edit copies of this file only
 
@@ -132,11 +135,11 @@ In the `CUTOFFS` section, users may provide different (inclusive) values for ide
 
 [CHECKM]
 PATH = /usr/local/bin/checkm
+# Do not remove this next flag
 --tmpdir = /home/appuser/tmp_dir
 --aai_strain = 0.95
--t = 4
---pplacer_threads = 1
-FLAGS = --reduced_tree
+-t = 10
+--pplacer_threads = 10
 
 [FASTANI]
 PATH = /usr/bin/fastANI
@@ -150,7 +153,7 @@ FLAGS = -s
 
 [CUTOFFS]
 ANI = 98.5
-IS_COMPLETE = 90
+IS_COMPLETE = 70
 IS_CONTAMINATED = 5
 
 
