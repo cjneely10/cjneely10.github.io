@@ -122,8 +122,11 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and non-redundant. This demo will use the values listed above (completion &ge;90%, contamination &le;5%, ANI &ge;98.5%), so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`.
 
+After these changes, the **PhyloSanity** config file should resemble the following:
+
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-post.png) -->
-<pre><code># Default config file for running the FuncSanity pipeline
+<pre><code># Docker/PhyloSanity.ini
+# Default config file for running the FuncSanity pipeline
 # DO NOT edit any PATH, DATA, or DATA_DICT variables
 # Users are recommended to edit copies of this file only
 
@@ -132,11 +135,11 @@ In the `CUTOFFS` section, users may provide different (inclusive) values for ide
 
 [CHECKM]
 PATH = /usr/local/bin/checkm
+# Do not remove this next flag
 --tmpdir = /home/appuser/tmp_dir
 --aai_strain = 0.95
--t = 4
---pplacer_threads = 1
-FLAGS = --reduced_tree
+-t = 10
+--pplacer_threads = 10
 
 [FASTANI]
 PATH = /usr/bin/fastANI
@@ -198,17 +201,74 @@ We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
 
-<!-- ![](https://cjneely10.github.io/files/phylosanity-ini-1.png) -->
+<pre><code>SUMMARIZE:	View summary of all tables in database
+ Project root directory:	Metagenomes
+ Name of database:		Metagenomes.db
+
+*******************************************************************************************
+	     Table Name:	evaluation  
+	Number of Records:	        10/10        
+
+	        Database	Average             	Std Dev     
+
+	      completion	92.882              	4.817       
+	   contamination	3.365               	2.574       
+-------------------------------------------------------------------------------------------
+
+	        Database	Most Frequent       	Number    	Total Count 
+
+	          _class	Phycisphaerales     	4         	10          
+	          _order	SM1A02              	4         	10          
+	          domain	Bacteria            	10        	10          
+	          family	Gimesia             	2         	10          
+	           genus	Gimesia             	2         	10          
+	     is_complete	True                	7         	10          
+	 is_contaminated	False               	7         	10          
+	is_non_redundant	True                	10        	10          
+	         kingdom	Planctomycetota     	10        	10          
+	          phylum	Phycisphaerae       	4         	10          
+	redundant_copies	[]                  	10        	10          
+	         species	sp002683825         	1         	10          
+-------------------------------------------------------------------------------------------</code></pre>
 
 The database summary output is fairly self-explanatory - this table is named "evaluation", which was given to it by the settings in the `BIOMETADB` section of the `PhyloSanity.ini` config file that we used to run the pipeline. The number of records corresponds to the number of genomes evaluated. Averages and standard deviations are provided for numerical data categories. For text and boolean data categories, frequency values are provided - e.g., the most frequently occurring value, the number of times that value occurred, and the total number of nun-null values in that category.
 
 This is great, but our completion requirement of 90% may be a bit strict for this dataset - only a small number of the initial genomes are of sufficient completion to be used downstream. 
 
-In fact, if we query the results for high quality, non-redundant genomes, we can see that very few passed the combined filtering values:
+In fact, if we query the results for high quality, non-redundant genomes, we can see that only half of the dataset passed the combined filtering values:
 
 `dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr`
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-2.png) -->
+<pre><code>SUMMARIZE:	View summary of all tables in database
+ Project root directory:	Metagenomes
+ Name of database:		Metagenomes.db
+
+*******************************************************************************************
+	     Table Name:	evaluation  
+	Number of Records:	         5/10        
+
+	        Database	Average             	Std Dev     
+
+	      completion	94.978              	2.941       
+	   contamination	1.884               	0.893       
+-------------------------------------------------------------------------------------------
+
+	        Database	Most Frequent       	Number    	Total Count 
+
+	          _class	Planctomycetales    	2         	5           
+	          _order	Planctomycetaceae...	2         	5           
+	          domain	Bacteria            	5         	5           
+	          family	Gimesia             	2         	5           
+	           genus	Gimesia             	2         	5           
+	     is_complete	True                	5         	5           
+	 is_contaminated	False               	5         	5           
+	is_non_redundant	True                	5         	5           
+	         kingdom	Planctomycetota     	5         	5           
+	          phylum	UBA1135             	2         	5           
+	redundant_copies	[]                  	5         	5           
+	         species	sp002683825         	1         	5           
+-------------------------------------------------------------------------------------------</code></pre>
 
 Quick note about queries:
 
@@ -260,7 +320,7 @@ Let's query the database to see the results of this change in the completion fil
 	         kingdom	Planctomycetota     	10        	10          
 	          phylum	Phycisphaerae       	4         	10          
 	redundant_copies	[]                  	10        	10          
-	         species	sp002684755         	1         	10          
+	         species	sp002683825         	1         	10          
 -------------------------------------------------------------------------------------------</code></pre>
 
 With the new criteria, the number of genomes that are deemed 'complete' has increased. We can see this in the row named `is_complete`, which now verifies that a higher number of genomes passed the lower completion filter.
@@ -286,7 +346,7 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 
 	        Database	Most Frequent       	Number    	Total Count 
 
-	          _class	Phycisphaerales     	2         	7           
+	          _class	Planctomycetales    	2         	7           
 	          _order	Planctomycetaceae...	2         	7           
 	          domain	Bacteria            	7         	7           
 	          family	Gimesia             	2         	7           
@@ -295,9 +355,9 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 	 is_contaminated	False               	7         	7           
 	is_non_redundant	True                	7         	7           
 	         kingdom	Planctomycetota     	7         	7           
-	          phylum	Phycisphaerae       	2         	7           
+	          phylum	UBA1135             	2         	7           
 	redundant_copies	[]                  	7         	7           
-	         species	maris               	1         	7           
+	         species	sp002683825         	1         	7           
 -------------------------------------------------------------------------------------------</code></pre>
 
 
