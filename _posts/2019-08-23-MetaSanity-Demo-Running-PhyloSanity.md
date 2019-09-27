@@ -1,17 +1,17 @@
 ---
-title: 'MetaSanity Demo part 1'
+title: 'MetaSanity Demo - Running PhyloSanity'
 date: 2019-08-23
-permalink: /posts/2019/08/MetaSanity-demo-part-1/
+permalink: /posts/2019/08/MetaSanity-Demo-Running-PhyloSanity/
 tags:
   - MetaSanity
   - demos
 ---
 
-**MetaSanity** is a software designed for easy generation of dynamic data analysis pipelines. The heart of the software is a queryable SQL database that allows fast and easy retrieval of data - in this case, gene annotations and other related genomic data.
+**MetaSanity** is a designed for easy generation of dynamic data analysis pipelines. The heart of the software is a queryable SQL database that allows fast and easy retrieval of genomic metadata - in this case, gene annotations and other related genomic data.
 
 Why should I use MetaSanity?
 ======
-**MetaSanity** provides two key benefits that make it a highly recommended tool for researchers.
+**MetaSanity** provides two key benefits for researchers.
 
 1. Customizable and scalable pipelines
 	1. Build an annotation pipeline from a variety of commonly used software packages.
@@ -20,7 +20,7 @@ Why should I use MetaSanity?
 2. Queryable output for project modularization and metadata retention.
 	1. **BioMetaDB** project stores output from each pipeline as a SQLite3 database.
 	2. All data files are kept in single location, and temporary file creation is minimized.
-	3. Interface to command-line to query for fasta records with specific annotations, or to generate `.tsv` summary of all annotations.
+	3. Interface to command-line to query for FASTA records with specific annotations, or to generate a tab-delimited summary of all annotations.
 
 MetaSanity demo
 ======
@@ -28,13 +28,14 @@ This blog post will walk through the data analysis pipelines available in **Meta
 
 For even more usage examples, see [MetaSanity's usage page](https://github.com/cjneely10/MetaSanity/wiki/3-Usage).
 
-For this blog, I have selected a group of genomes of variable quality and completion/contamination, including some redundant genomes. I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" as either 1) having no genomes in the data set with whom its percent average nucleotide identity (%ANI) is greater than or equal to 98.5, or 2) having &ge;1 separate genome share &ge;98.5% ANI, but having the maximum completion percent of the copies.
-Once this is complete, I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
-Finally. I will explore the results of my work by using the **BioMetaDB** SQL interface.
+For this blog post, I have selected a group of genomes of variable quality and completion/contamination, including some redundant genomes. I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
 
-These datasets are available for download at [insert-url-here]().
+In a follow-up [blog post](), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
+In a final [blog post](), I will explore the results of my work by using the **BioMetaDB** SQL interface. [provide a link]
 
-Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users are recommended to run all portions of this blog in a separate screen environment. For example, `screen -S test-run-MetaSanity`.
+This test dataset is available for download at [insert-url-here]().
+
+Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users should consider options to run this process in the background. For example, in Linux/Unix environments ‘screen’ can be used - `screen -S test-run-MetaSanity`.
 
 Installation
 ------
@@ -50,7 +51,7 @@ In this blog, we will generate our **MetaSanity** project in the directory `$HOM
 
 `mkdir genomes && cd genomes && wget insert-url-here/*`
 
-Additionally, each **MetaSanity** pipeline requires a user-created configuration file. Default files are available in the MetaSanity program package in the folder `Config/Docker`. Each config file is broken up into two sections - an upper section of required information, and a lower section of optional information.
+Additionally, each **MetaSanity** pipeline requires a user-created configuration file. Default files are available in the MetaSanity program package in the folder `Config/Docker`. Each config file is broken up into two sections - a section for required parameters, and a section of optional information.
 
 ******
 
@@ -63,7 +64,7 @@ Copy the default configuration file from your program package into your project 
 
 `cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/PhyloSanity.ini ./`
 
-The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. Edit the config file using `nano PhyloSanity.ini`.
+The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. You can edit the config file in a terminal using `nano PhyloSanity.ini`.
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini.png) -->
 <pre><code># Docker/PhyloSanity.ini
@@ -182,9 +183,11 @@ From within this directory, run the **PhyloSanity** pipeline. You may redirect l
 
 `MetaSanity -d genomes/ -c PhyloSanity.ini PhyloSanity 2>eval.log`
 
-Depending on your system, this may run for several hours.
+If we liked, we could specify an output directory using the `-o output_directory` flag. We may also overwrite the **BioMetaDB** directory name by using `-b biometadb_name`.
 
-Once **PhyloSanity** is complete, the project directory structure will resemble the following:
+Depending on your system and the number of genomes, this may run for several hours.
+
+Once **PhyloSanity** is complete, the default project directory structure will resemble the following:
 
 <pre><code>test-run/
 ├── genomes/
@@ -193,7 +196,7 @@ Once **PhyloSanity** is complete, the project directory structure will resemble 
 ├── Metagenomes/
 └── PhyloSanity.ini</code></pre>
 
-The `out/` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all raw data stored in a `SQLite3` database.
+By default, the `out/` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all metadata stored in a `SQLite3` database.
 
 Within the `out/` directory are results directories for each output, labeled as `checkm_results`, etc. Also, running **PhyloSanity** generated a citations file that describes all of the analyses that were run in this pipeline.
 
@@ -231,7 +234,7 @@ We can generate a quick summary of this data using a command-line query:
 	         species	sp002683825         	1         	10          
 -------------------------------------------------------------------------------------------</code></pre>
 
-The database summary output is fairly self-explanatory - this table is named "evaluation", which was given to it by the settings in the `BIOMETADB` section of the `PhyloSanity.ini` config file that we used to run the pipeline. The number of records corresponds to the number of genomes evaluated. Averages and standard deviations are provided for numerical data categories. For text and boolean data categories, frequency values are provided - e.g., the most frequently occurring value, the number of times that value occurred, and the total number of nun-null values in that category.
+The database summary output is fairly self-explanatory - this table is named "evaluation", which was given to it by the settings in the `BIOMETADB` section of the `PhyloSanity.ini` config file that we used to run the pipeline. The number of records corresponds to the number of genomes evaluated. Averages and standard deviations are provided for numerical data categories. For text and boolean data categories, frequency values are provided - e.g., the most frequently occurring value, the number of times that value occurred, and the total number of values in that category.
 
 This is great, but our completion requirement of 90% may be a bit strict for this dataset - only a small number of the initial genomes are of sufficient completion to be used downstream. 
 
@@ -272,7 +275,7 @@ In fact, if we query the results for high quality, non-redundant genomes, we can
 
 Quick note about queries:
 
-- In the above command, the flag `-q hqnr` is a query, which filters a database table's results. In this case, the `hqnr` query was stored in the **BioMetaDB** program for convenience, and expands to `-q "is_complete AND NOT is_contaminated AND is_non_redundant"`. We are using this query on the `evaluation` table that we just created, so we provide this name using the `-t` flag.
+- In the above command, the flag `-q hqnr` is a query, which filters a database table's results. In this case, the `hqnr` query was stored in the **BioMetaDB** program for convenience, and expands to `-q "is_complete AND NOT is_contaminated AND is_non_redundant"`. We are using this query on the `evaluation` table, so we provide this name using the `-t` flag.
 
 - Notice the structure of this query statement - using the values in the `Database` column of the summary output, we created a filtering statement. We could perform similar queries, such as:
 	- `-q "redundant_copies != '[]'"` to get genomes with redundant copies (note the quotes around strings)
@@ -280,13 +283,13 @@ Quick note about queries:
 
 - In order to prevent name issues with either Python or SQL, the "class" and "order" columns are replaced by "\_class" and "\_order", respectively.
 
-Let's change some of these filtering criteria and rerun **MetaSanity**. We can adjust the `COMPLETION` value in `PhyloSanity.ini` to be lower - in this case, 70% - by replacing the line `IS_COMPLETE = 90` to `IS_COMPLETE = 70`.
+Let's change some of these filtering criteria and rerun **PhyloSanity**. We can adjust the `COMPLETION` value in `PhyloSanity.ini` to be lower - in this case, 70% - by replacing the line `IS_COMPLETE = 90` to `IS_COMPLETE = 70`.
 
 Rerun **PhyloSanity** with this adjusted config file:
 
 `MetaSanity -d genomes/ -c PhyloSanity.ini PhyloSanity`
 
-Notice that this run completes within a few seconds. Here lies one of the benefits of **MetaSanity** - since we are only adjusting a filtering criteria, rerunning the pipeline occurs really quickly. As a counter example, if we were to delete the folder `checkm_results` in the output directory, then the pipeline would need to rerun this step, which would take longer to complete.
+Notice that this run completes within a few seconds. Here is one of the benefits of **MetaSanity** - since we are only adjusting a filtering criterion, rerunning the pipeline occurs really quickly. As a counter example, if we were to delete the folder `checkm_results` in the output directory, then the pipeline would need to re-run this step, which would take longer to complete.
 
 Let's query the database to see the results of this change in the completion filter:
 
@@ -363,11 +366,9 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 
 Great! Let's output these sequences to a separate folder - in this case, I will name it `HighQuality` - and focus our annotation pipeline on this subset. 
 
-**BioMetaDB** has a very simple command-line interface for saving fasta records and summary tab-delimited data files. We can store fasta records to a folder using the `-w <folder-name>` flag. Combined with a query statement, we can very easily retrieve genomes that match our specific needs:
+**BioMetaDB** has a very simple command-line interface for saving FASTA records and summary tab-delimited data files. We can store FASTA records to a folder using the `-w <folder-name>` flag. Combined with a query statement, we can very easily retrieve genomes that match our specific needs:
 
 `dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr -w HighQuality`
-
-After running this command, your directory structure should resemble the following:
 
 <pre><code>test-run/
 ├── genomes/
@@ -377,4 +378,19 @@ After running this command, your directory structure should resemble the followi
 ├── Metagenomes/
 └── PhyloSanity.ini</code></pre>
 
-In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-demo-part-2/), we will use **FuncSanity** to annotate this dataset!
+Another option for filtering the genomes that have been evaluated is by using the GTDB. In this example, we want all genomes that were assigned to genus ‘Gimesia’.
+
+`dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q "genus == 'Gimesia'" -w Gimesia_genomes`
+
+After running this command, the default directory structure resembles the following:
+
+<pre><code>test-run/
+├── genomes/
+├── Gimesia_genomes/
+├── HighQuality/
+├── eval.log
+├── out/
+├── Metagenomes/
+└── PhyloSanity.ini</code></pre>
+
+In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-Demo-Running-FuncSanity/), we will use **FuncSanity** to annotate this dataset!
