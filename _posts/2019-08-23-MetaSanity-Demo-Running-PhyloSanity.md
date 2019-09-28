@@ -47,7 +47,7 @@ In this blog, we will generate our **MetaSanity** project in the directory `$HOM
 
 `mkdir $HOME/test-run && cd $HOME/test-run`
 
-**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `\~/Downloads/Demo-Data`.
+**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `~/Downloads/Demo-Data`.
 
 `mkdir genomes && cd genomes && cp ~/Downloads/Demo-Data/* ./`
 
