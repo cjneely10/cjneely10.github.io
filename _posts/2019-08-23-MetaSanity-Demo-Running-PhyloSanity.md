@@ -33,7 +33,7 @@ For this blog post, I have selected a group of genomes of variable quality and c
 In a follow-up [blog post](), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
 In a final [blog post](), I will explore the results of my work by using the **BioMetaDB** SQL interface. [provide a link]
 
-This test dataset is available for download at [insert-url-here]().
+This test dataset is available for download [here](https://drive.google.com/open?id=1561UHa9QC0odw3JgD4H4f6Eq6NLFZlOK).
 
 Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users should consider options to run this process in the background. For example, in Linux/Unix environments ‘screen’ can be used - `screen -S test-run-MetaSanity`.
 
@@ -47,9 +47,9 @@ In this blog, we will generate our **MetaSanity** project in the directory `$HOM
 
 `mkdir $HOME/test-run && cd $HOME/test-run`
 
-**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post.
+**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `\~/Downloads/Demo-Data`.
 
-`mkdir genomes && cd genomes && wget insert-url-here/*`
+`mkdir genomes && cd genomes && cp ~/Downloads/Demo-Data/* ./`
 
 Additionally, each **MetaSanity** pipeline requires a user-created configuration file. Default files are available in the MetaSanity program package in the folder `Config/Docker`. Each config file is broken up into two sections - a section for required parameters, and a section of optional information.
 
