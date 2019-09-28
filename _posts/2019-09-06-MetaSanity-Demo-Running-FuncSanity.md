@@ -17,6 +17,7 @@ We are continuing our work in the directory `$HOME/test-run`. After the last blo
 
 <pre><code>test-run/
 ├── genomes/
+├── Gimesia_genomes/
 ├── HighQuality/
 ├── eval.log
 ├── out/
@@ -231,6 +232,7 @@ The project directory `test-run` should resemble the following structure:
 <pre><code>test-run/
 ├── genomes/
 ├── FuncSanity.ini
+├── Gimesia_genomes/
 ├── HighQuality/
 ├── eval.log
 ├── out/
@@ -259,6 +261,7 @@ Once **FuncSanity** is complete, the project directory structure will resemble t
 ├── annot.log	
 ├── genomes/
 ├── FuncSanity.ini
+├── Gimesia_genomes/
 ├── HighQuality/
 ├── eval.log
 ├── out/
