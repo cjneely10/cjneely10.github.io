@@ -103,12 +103,12 @@ View a summary of gene calls for TOBG-CPC-51 that were given annotations by **Fu
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.000                   0.000       
-    phage_contig_2 0.002                   0.072       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.000                   0.000       
+    phage_contig_2      0.002                   0.072       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
@@ -279,12 +279,12 @@ Here are a few more examples:
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.000                   0.000       
-    phage_contig_2 0.002                   0.072       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.000                   0.000       
+    phage_contig_2      0.002                   0.072       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
@@ -302,12 +302,12 @@ Here are a few more examples:
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.001                   0.029       
-    phage_contig_2 0.006                   0.096       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.001                   0.029       
+    phage_contig_2      0.006                   0.096       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
@@ -325,12 +325,12 @@ Here are a few more examples:
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.000                   0.000       
-    phage_contig_2 0.000                   0.000       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.000                   0.000       
+    phage_contig_2      0.000                   0.000       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
@@ -365,12 +365,12 @@ Here are a few more examples:
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.002                   0.091       
-    phage_contig_2 0.000                   0.000       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.002                   0.091       
+    phage_contig_2      0.000                   0.000       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
@@ -388,12 +388,12 @@ Here are a few more examples:
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.000                   0.000       
-    phage_contig_2 0.000                   0.000       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.000                   0.000       
+    phage_contig_2      0.000                   0.000       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
@@ -411,12 +411,12 @@ Here are a few more examples:
 
                Database Average                 Std Dev     
 
-    phage_contig_1 0.000                   0.000       
-    phage_contig_2 0.000                   0.000       
-    phage_contig_3 0.000                   0.000       
-        prophage_1 0.000                   0.000       
-        prophage_2 0.000                   0.000       
-        prophage_3 0.000                   0.000       
+    phage_contig_1      0.000                   0.000       
+    phage_contig_2      0.000                   0.000       
+    phage_contig_3      0.000                   0.000       
+        prophage_1      0.000                   0.000       
+        prophage_2      0.000                   0.000       
+        prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
             Database    Most Frequent           Number      Total Count 
