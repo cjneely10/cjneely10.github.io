@@ -123,6 +123,8 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and non-redundant. This demo will use the values listed above (completion &ge;90%, contamination &le;5%, ANI &ge;98.5%), so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`.
 
+The **BioMetaDB** section provides me the option to name the project that this analysis will generate - in this case, `Metagenomes`. I also can set this value on the command line by passing the `-b project-name` command. No other changes should be made in this section.
+
 After these changes, the **PhyloSanity** config file should resemble the following:
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-post.png) -->
