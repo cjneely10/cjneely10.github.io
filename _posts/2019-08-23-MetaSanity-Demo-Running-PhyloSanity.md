@@ -33,7 +33,7 @@ For this blog post, I have selected a group of genomes of variable quality and c
 In a follow-up [blog post](), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
 In a final [blog post](), I will explore the results of my work by using the **BioMetaDB** SQL interface. [provide a link]
 
-This test dataset is available for download [here](https://drive.google.com/open?id=1561UHa9QC0odw3JgD4H4f6Eq6NLFZlOK).
+This test dataset is available for download <a href="https://drive.google.com/open?id=1561UHa9QC0odw3JgD4H4f6Eq6NLFZlOK" target="_blank">here</a>.
 
 Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users should consider options to run this process in the background. For example, in Linux/Unix environments ‘screen’ can be used - `screen -S test-run-MetaSanity`.
 
