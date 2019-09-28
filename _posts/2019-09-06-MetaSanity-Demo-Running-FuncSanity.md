@@ -34,21 +34,195 @@ Copy the default configuration file from your program package into your project 
 
 The config file `FuncSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. Again, we'll edit the config file using `nano FuncSanity.ini`.
 
-![](https://cjneely10.github.io/files/FuncSanity-pre-1.png)
+<pre><code># Docker/FuncSanity.ini
+# Default config file for running the FuncSanity pipeline
+# DO NOT edit any PATH, DATA, or DATA_DICT variables
+# Users are recommended to edit copies of this file only
 
-![](https://cjneely10.github.io/files/FuncSanity-pre-2.png)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipes **MUST** be set
 
-As before, I will now edit this configuration file to match the specifications of my system. For this analysis, I am not interested in predicting protein domains and I only want to use SignalP in my extracellular peptidase annotation.
+[PRODIGAL]
+PATH = /usr/bin/prodigal
+-p = meta
+FLAGS = -m
 
-The `FuncSanity.ini` config file currently has SignalP commented out, so I will uncomment this section by removing the `#` characters preceding the two SignalP lines.
+[HMMSEARCH]
+PATH = /usr/bin/hmmsearch
+-T = 75
+
+[HMMCONVERT]
+PATH = /usr/bin/hmmconvert
+
+[HMMPRESS]
+PATH = /usr/bin/hmmpress
+
+[BIOMETADB]
+--db_name = Metagenomes
+FLAGS = -s
+
+[DIAMOND]
+PATH = /usr/bin/diamond
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipe sections may optionally be set
+# Ensure that the entire pipe section is valid,
+# or deleted/commented out, prior to running pipeline
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Peptidase annotation
+
+[CAZY]
+DATA = /home/appuser/Peptidase/dbCAN-fam-HMMs.txt
+
+[MEROPS]
+DATA = /home/appuser/Peptidase/MEROPS.pfam.hmm
+DATA_DICT = /home/appuser/Peptidase/merops-as-pfams.txt
+
+#[SIGNALP]
+#PATH = /home/appuser/signalp/signalp
+
+#[PSORTB]
+#PATH = /usr/bin/psortb
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# KEGG pathway annotation
+
+[KOFAMSCAN]
+PATH = /usr/bin/kofamscan
+--cpu = 1
+
+[BIODATA]
+PATH = /home/appuser/BioData/KEGGDecoder
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# PROKKA
+
+[PROKKA]
+PATH = /usr/bin/prokka
+FLAGS = --addgenes,--addmrna,--usegenus,--metagenome,--rnammer,--force
+--evalue = 1e-10
+--cpus = 1
+
+# # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# # InterproScan
+
+#[INTERPROSCAN]
+#PATH = /usr/bin/interproscan
+## Do not remove this next flag
+#--tempdir = /home/appuser/interpro_tmp
+#--applications = TIGRFAM,SFLD,SMART,SUPERFAMILY,Pfam,ProDom,Hamap,CDD,PANTHER
+#--cpu = 1
+#FLAGS = --goterms,--iprlookup,--pathways
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# VirSorter
+
+[VIRSORTER]
+PATH = /home/appuser/virsorter-data
+--db = 2
+--ncpu = 1</code></pre>
+
+As before, I will now edit this configuration file to match the specifications of my system. For this analysis, I am not interested in predicting protein domains.
+
+The `FuncSanity.ini` config file currently has SignalP commented out, so I will uncomment this section by removing the `#` characters preceding the two SignalP lines. I am also interested in predicting extracellularity, so I will also remove the `#` characters that precede the two PSORTb lines.
 
 InterProScan is set an an optional program and thus its section is already commented out by default.
 
 I will raise the thread count on each applicable program to better match my system, but no other flags need to be changed.
 
-![](https://cjneely10.github.io/files/FuncSanity-post-1.png)
+<pre><code># Docker/FuncSanity.ini
+# Default config file for running the FuncSanity pipeline
+# DO NOT edit any PATH, DATA, or DATA_DICT variables
+# Users are recommended to edit copies of this file only
 
-![](https://cjneely10.github.io/files/FuncSanity-post-2.png)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipes **MUST** be set
+
+[PRODIGAL]
+PATH = /usr/bin/prodigal
+-p = meta
+FLAGS = -m
+
+[HMMSEARCH]
+PATH = /usr/bin/hmmsearch
+-T = 75
+
+[HMMCONVERT]
+PATH = /usr/bin/hmmconvert
+
+[HMMPRESS]
+PATH = /usr/bin/hmmpress
+
+[BIOMETADB]
+--db_name = Metagenomes
+FLAGS = -s
+
+[DIAMOND]
+PATH = /usr/bin/diamond
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The following pipe sections may optionally be set
+# Ensure that the entire pipe section is valid,
+# or deleted/commented out, prior to running pipeline
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Peptidase annotation
+
+[CAZY]
+DATA = /home/appuser/Peptidase/dbCAN-fam-HMMs.txt
+
+[MEROPS]
+DATA = /home/appuser/Peptidase/MEROPS.pfam.hmm
+DATA_DICT = /home/appuser/Peptidase/merops-as-pfams.txt
+
+[SIGNALP]
+PATH = /home/appuser/signalp/signalp
+
+[PSORTB]
+PATH = /usr/bin/psortb
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# KEGG pathway annotation
+
+[KOFAMSCAN]
+PATH = /usr/bin/kofamscan
+--cpu = 10
+
+[BIODATA]
+PATH = /home/appuser/BioData/KEGGDecoder
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# PROKKA
+
+[PROKKA]
+PATH = /usr/bin/prokka
+FLAGS = --addgenes,--addmrna,--usegenus,--metagenome,--rnammer,--force
+--evalue = 1e-10
+--cpus = 10
+
+# # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# # InterproScan
+
+#[INTERPROSCAN]
+#PATH = /usr/bin/interproscan
+## Do not remove this next flag
+#--tempdir = /home/appuser/interpro_tmp
+#--applications = TIGRFAM,SFLD,SMART,SUPERFAMILY,Pfam,ProDom,Hamap,CDD,PANTHER
+#--cpu = 1
+#FLAGS = --goterms,--iprlookup,--pathways
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# VirSorter
+
+[VIRSORTER]
+PATH = /home/appuser/virsorter-data
+--db = 2
+--ncpu = 10</code></pre>
 
 Running FuncSanity
 ------
