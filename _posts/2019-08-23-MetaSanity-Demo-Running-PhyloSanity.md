@@ -204,6 +204,10 @@ We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
 
+Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
+
+`dbdm SUMMARIZE`
+
 <pre><code>SUMMARIZE:	View summary of all tables in database
  Project root directory:	Metagenomes
  Name of database:		Metagenomes.db

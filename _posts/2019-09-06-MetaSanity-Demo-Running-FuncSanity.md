@@ -99,6 +99,10 @@ We can generate a quick summary of this data using a command-line query:
 
 `dbdm SUMMARIZE -c Metagenomes`
 
+Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
+
+`dbdm SUMMARIZE`
+
 Depending on the number of genomes, a good deal of output will display on your terminal. This is great, but it would be very helpful to be able to work with and manipulate this data. **BioMetaDB** steps in to provide a simple command-line interface for accessing your data quickly and easily.
 
 Summary of **BioMetaDB** project output

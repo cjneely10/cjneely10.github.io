@@ -38,6 +38,10 @@ You can view these tables easily using:
 
 `dbdm -c Metagenomes SUMMARIZE -t evaluation`
 
+Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
+
+`dbdm SUMMARIZE`
+
 <pre><code>SUMMARIZE: View summary of all tables in database
  Project root directory:  Metagenomes
  Name of database:    Metagenomes.db
