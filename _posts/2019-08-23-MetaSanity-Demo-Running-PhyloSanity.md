@@ -28,12 +28,12 @@ This blog post will walk through the data analysis pipelines available in **Meta
 
 For even more usage examples, see [MetaSanity's usage page](https://github.com/cjneely10/MetaSanity/wiki/3-Usage).
 
-For this blog post, I have selected a group of genomes of variable quality and completion/contamination, including some redundant genomes. I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
+For this blog post, I have selected a group of genomes of variable quality and completion/contamination. This test dataset is available for download <a href="https://drive.google.com/open?id=1561UHa9QC0odw3JgD4H4f6Eq6NLFZlOK" target="_blank">here</a>.
+
+I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
 
 In a follow-up [blog post](https://cjneely10.github.io/posts/2019/09/MetaSanity-Demo-Running-FuncSanity/), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
 In a final [blog post](https://cjneely10.github.io/posts/2019/09/MetaSanity-Demo-BioMetaDB/), I will explore the results of my work by using the **BioMetaDB** SQL interface.
-
-This test dataset is available for download <a href="https://drive.google.com/open?id=1561UHa9QC0odw3JgD4H4f6Eq6NLFZlOK" target="_blank">here</a>.
 
 Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users should consider options to run this process in the background. For example, in Linux/Unix environments ‘screen’ can be used - `screen -S test-run-MetaSanity`.
 
