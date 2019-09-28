@@ -126,11 +126,9 @@ PATH = /home/appuser/virsorter-data
 --db = 2
 --ncpu = 1</code></pre>
 
-As before, I will now edit this configuration file to match the specifications of my system. For this analysis, I am not interested in predicting protein domains.
+As before, I will now edit this configuration file to match the specifications of my system. For this analysis, I am not interested in predicting protein domains, so I will leave InterProScan commented out.
 
 The `FuncSanity.ini` config file currently has SignalP commented out, so I will uncomment this section by removing the `#` characters preceding the two SignalP lines. I am also interested in predicting extracellularity, so I will also remove the `#` characters that precede the two PSORTb lines.
-
-InterProScan is set an an optional program and thus its section is already commented out by default.
 
 I will raise the thread count on each applicable program to better match my system, but no other flags need to be changed.
 
