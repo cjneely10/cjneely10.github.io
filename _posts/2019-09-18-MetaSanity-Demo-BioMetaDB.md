@@ -182,6 +182,8 @@ Quick notes
     - Treat columns that begin with `is_` as Boolean, ex: `-q is_complete`.
 - Use simple comparison statements as needed
     - `==`, `<`, `>`, `<=`, `>=`, `!=`, `AND`, `OR`, `NOT`
+- Use regex expressions for strings
+    - `-q "cazy == 'GT%'"` would locate CAZy annotations that begin with `GT`.
 - Ensure proper query formatting
     - Provide adequate spacing, as needed:
         - `"is_completeANDdomain == 'Bacteria'"` would fail, whereas `"is_complete AND domain == 'Bacteria'"` is valid.
