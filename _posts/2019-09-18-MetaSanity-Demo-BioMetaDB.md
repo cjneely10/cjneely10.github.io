@@ -48,7 +48,7 @@ Note that we can omit the `-c Metagenomes` if we are working in a directory that
 
 *******************************************************************************************
        Table Name:  evaluation  
-  Number of Records:          10/10        
+Number of Records:  10/10        
 
           Database  Average               Std Dev     
 
@@ -98,8 +98,8 @@ View a summary of gene calls for TOBG-CPC-51 that were given annotations by **Fu
  Name of database:      Metagenomes.db
 
 **********************************************************************************************
-            Table Name: tobg-cpc-51 
-    Number of Records:        1749/4167      
+       Table Name:      tobg-cpc-51 
+Number of Records:      1749/4167      
 
                Database Average                 Std Dev     
 
@@ -133,8 +133,8 @@ View a summary of gene calls for TOBG-CPC-997 that have both KO and MEROPS-Pfam 
  Name of database:      Metagenomes.db
 
 **********************************************************************************************
-            Table Name: tobg-cpc-51 
-    Number of Records:          63/4167      
+         Table Name:    tobg-cpc-51 
+  Number of Records:    63/4167      
 
                Database Average                 Std Dev     
 
@@ -233,7 +233,7 @@ Working with MAGs requires researchers to take added additional care to ensure g
 
 *******************************************************************************************
          Table Name:    evaluation  
-    Number of Records:          10/10        
+  Number of Records:    10/10        
 
             Database    Average                 Std Dev     
 
@@ -276,56 +276,56 @@ Here are a few more examples:
  Name of database:      Metagenomes.db
 
 **********************************************************************************************
-            Table Name: tobg-cpc-51 
-    Number of Records:        1749/4167      
+           Table Name:    tobg-cpc-51 
+    Number of Records:    1749/4167      
 
-               Database Average                 Std Dev     
+              Database    Average                 Std Dev     
 
-    phage_contig_1      0.000                   0.000       
-    phage_contig_2      0.002                   0.072       
-    phage_contig_3      0.000                   0.000       
-        prophage_1      0.000                   0.000       
-        prophage_2      0.000                   0.000       
-        prophage_3      0.000                   0.000       
+        phage_contig_1    0.000                   0.000       
+        phage_contig_2    0.002                   0.072       
+        phage_contig_3    0.000                   0.000       
+            prophage_1    0.000                   0.000       
+            prophage_2    0.000                   0.000       
+            prophage_3    0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
-            Database    Most Frequent           Number      Total Count 
+              Database    Most Frequent           Number      Total Count 
 
-                cazy    GT41                    23          106         
-    is_extracellular    False                   1715        1746        
-                  ko    K08884                  25          1387        
-         merops_pfam    PF00082                 9           132         
-              prokka    atsA_12                 19          567         
+                  cazy    GT41                    23          106         
+      is_extracellular    False                   1715        1746        
+                    ko    K08884                  25          1387        
+           merops_pfam    PF00082                 9           132         
+                prokka    atsA_12                 19          567         
 -------------------------------------------------------------------------------------------
 
 **********************************************************************************************
             Table Name: tobg-cpc-31 
     Number of Records:        2389/5988      
 
-               Database Average                 Std Dev     
+              Database    Average                 Std Dev     
 
-    phage_contig_1      0.001                   0.029       
-    phage_contig_2      0.006                   0.096       
-    phage_contig_3      0.000                   0.000       
-        prophage_1      0.000                   0.000       
-        prophage_2      0.000                   0.000       
-        prophage_3      0.000                   0.000       
+        phage_contig_1    0.001                   0.029       
+        phage_contig_2    0.006                   0.096       
+        phage_contig_3    0.000                   0.000       
+            prophage_1    0.000                   0.000       
+            prophage_2    0.000                   0.000       
+            prophage_3    0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
-            Database    Most Frequent           Number      Total Count 
+              Database    Most Frequent           Number      Total Count 
 
-                cazy    CE10                    13          126         
-    is_extracellular    False                   2339        2359        
-                  ko    K02456                  43          1690        
-         merops_pfam    PF05569                 14          123         
-              prokka    rcsC_19                 13          1593        
+                  cazy    CE10                    13          126         
+      is_extracellular    False                   2339        2359        
+                    ko    K02456                  43          1690        
+           merops_pfam    PF05569                 14          123         
+                prokka    rcsC_19                 13          1593        
 -------------------------------------------------------------------------------------------
 
 **********************************************************************************************
             Table Name: tobg-cpc-96 
     Number of Records:        1170/2656      
 
-               Database Average                 Std Dev     
+          Database      Average                 Std Dev     
 
     phage_contig_1      0.000                   0.000       
     phage_contig_2      0.000                   0.000       
@@ -362,72 +362,72 @@ Here are a few more examples:
 -------------------------------------------------------------------------------------------
 
 **********************************************************************************************
-            Table Name: tobg-cpc-9  
-    Number of Records:        1914/4282      
+        Table Name:      tobg-cpc-9  
+ Number of Records:      1914/4282      
 
-               Database Average                 Std Dev     
+           Database      Average                 Std Dev     
 
-    phage_contig_1      0.002                   0.091       
-    phage_contig_2      0.000                   0.000       
-    phage_contig_3      0.000                   0.000       
-        prophage_1      0.000                   0.000       
-        prophage_2      0.000                   0.000       
-        prophage_3      0.000                   0.000       
+     phage_contig_1      0.002                   0.091       
+     phage_contig_2      0.000                   0.000       
+     phage_contig_3      0.000                   0.000       
+         prophage_1      0.000                   0.000       
+         prophage_2      0.000                   0.000       
+         prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
-            Database    Most Frequent           Number      Total Count 
+            Database     Most Frequent           Number      Total Count 
 
-                cazy    GT4                     20          100         
-    is_extracellular    False                   1858        1904        
-                  ko    K08884                  18          1433        
-         merops_pfam    PF00326                 12          139         
-              prokka    atsA_22                 14          1082        
+                cazy     GT4                     20          100         
+    is_extracellular     False                   1858        1904        
+                  ko     K08884                  18          1433        
+         merops_pfam     PF00326                 12          139         
+              prokka     atsA_22                 14          1082        
 -------------------------------------------------------------------------------------------
 
 **********************************************************************************************
-            Table Name: tobg-cpc-85 
-    Number of Records:        1365/2980      
+           Table Name:      tobg-cpc-85 
+    Number of Records:      1365/2980      
 
-               Database Average                 Std Dev     
+              Database      Average                 Std Dev     
 
-    phage_contig_1      0.000                   0.000       
-    phage_contig_2      0.000                   0.000       
-    phage_contig_3      0.000                   0.000       
-        prophage_1      0.000                   0.000       
-        prophage_2      0.000                   0.000       
-        prophage_3      0.000                   0.000       
+        phage_contig_1      0.000                   0.000       
+        phage_contig_2      0.000                   0.000       
+        phage_contig_3      0.000                   0.000       
+            prophage_1      0.000                   0.000       
+            prophage_2      0.000                   0.000       
+            prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
-            Database    Most Frequent           Number      Total Count 
+              Database      Most Frequent           Number      Total Count 
 
-                cazy    GT2                     7           69          
-    is_extracellular    False                   1342        1364        
-                  ko    K08884                  10          1045        
-         merops_pfam    PF00326                 6           94          
-              prokka    xpsE_2                  10          750         
+                  cazy      GT2                     7           69          
+      is_extracellular      False                   1342        1364        
+                    ko      K08884                  10          1045        
+           merops_pfam      PF00326                 6           94          
+                prokka     xpsE_2                  10          750         
 -------------------------------------------------------------------------------------------
 
 **********************************************************************************************
-            Table Name: tobg-np-99  
-    Number of Records:        2509/6573      
+           Table Name:      tobg-np-99  
+    Number of Records:      2509/6573      
 
-               Database Average                 Std Dev     
+              Database      Average                 Std Dev     
 
-    phage_contig_1      0.000                   0.000       
-    phage_contig_2      0.000                   0.000       
-    phage_contig_3      0.000                   0.000       
-        prophage_1      0.000                   0.000       
-        prophage_2      0.000                   0.000       
-        prophage_3      0.000                   0.000       
+        phage_contig_1      0.000                   0.000       
+        phage_contig_2      0.000                   0.000       
+        phage_contig_3      0.000                   0.000       
+            prophage_1      0.000                   0.000       
+            prophage_2      0.000                   0.000       
+            prophage_3      0.000                   0.000       
 ----------------------------------------------------------------------------------------------
 
-            Database    Most Frequent           Number      Total Count 
+              Database      Most Frequent           Number      Total Count 
 
-                cazy    CE10                    16          137         
-    is_extracellular    False                   2478        2504        
-                  ko    K02456                  49          1953        
-         merops_pfam    PF05569                 15          133         
-              prokka    zraR_6                  9           1251        
+                  cazy      CE10                    16          137         
+      is_extracellular      False                   2478        2504        
+                    ko      K02456                  49          1953        
+           merops_pfam      PF05569                 15          133         
+                prokka      zraR_6                  9           1251        
 -------------------------------------------------------------------------------------------</code></pre>
 
 `dbdm -c Metagenomes SUMMARIZE -q "NOT is_contaminated ~> prokka_annot"`

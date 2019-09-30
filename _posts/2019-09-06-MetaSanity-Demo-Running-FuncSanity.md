@@ -291,7 +291,7 @@ Below is an example of a complete annotation, involving all programs running def
 
 *******************************************************************************************
 	     Table Name:	tobg-cpc-96 
-	Number of Records:	      1957/2656      
+  Number of Records:	1957/2656      
 
 	        Database	Average             	Std Dev     
 

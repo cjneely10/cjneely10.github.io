@@ -216,7 +216,7 @@ Note that we can omit the `-c Metagenomes` if we are working in a directory that
 
 *******************************************************************************************
 	     Table Name:	evaluation  
-	Number of Records:	        10/10        
+  Number of Records:	10/10        
 
 	        Database	Average             	Std Dev     
 
@@ -255,7 +255,7 @@ In fact, if we query the results for high quality, non-redundant genomes, we can
 
 *******************************************************************************************
 	     Table Name:	evaluation  
-	Number of Records:	         5/10        
+  Number of Records:	5/10        
 
 	        Database	Average             	Std Dev     
 
@@ -308,7 +308,7 @@ Let's query the database to see the results of this change in the completion fil
 
 *******************************************************************************************
 	     Table Name:	evaluation  
-	Number of Records:	        10/10        
+  Number of Records:	10/10        
 
 	        Database	Average             	Std Dev     
 
@@ -345,7 +345,7 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 
 *******************************************************************************************
 	     Table Name:	evaluation  
-	Number of Records:	         7/10        
+  Number of Records:	7/10        
 
 	        Database	Average             	Std Dev     
 
