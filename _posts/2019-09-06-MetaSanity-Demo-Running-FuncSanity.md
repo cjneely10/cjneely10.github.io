@@ -282,6 +282,45 @@ Depending on the number of genomes, a good deal of output will display on your t
 
 Summary of **BioMetaDB** project output
 ------
+
+Below is an example of a complete annotation, involving all programs running default options. InterProScan counts are based on total times each domain was identified. Phage and prophage summaries are present, indicating at least one viral contig or prophage. If VirSorter identified no viral matches, then these columns would not be present.
+
+<pre><code>SUMMARIZE:	View summary of all tables in database
+ Project root directory:	Metagenomes
+ Name of database:		Metagenomes.db
+
+*******************************************************************************************
+	     Table Name:	tobg-cpc-96 
+	Number of Records:	      1957/2656      
+
+	        Database	Average             	Std Dev     
+
+	  phage_contig_1	0.000               	0.000       
+	  phage_contig_2	0.000               	0.000       
+	  phage_contig_3	0.000               	0.000       
+	      prophage_1	0.000               	0.000       
+	      prophage_2	0.000               	0.000       
+	      prophage_3	0.000               	0.000       
+-------------------------------------------------------------------------------------------
+
+	        Database	Most Frequent       	Number    	Total Count 
+
+	            cazy	GT2_Glycos_transf...	7         	53          
+	             cdd	cd02440             	26        	808         
+	           hamap	MF_00600 IPR00184...	3         	331         
+	is_extracellular	False               	73        	77          
+	              ko	K08884              	12        	987         
+	     merops_pfam	PF00082             	7         	77          
+	         panther	PTHR43289           	15        	1631        
+	            pfam	PF00005 IPR003439...	32        	1764        
+	          prodom	PD001179            	5         	34          
+	          prokka	pknD_10             	8         	526         
+	            sfld	SFLDS00029 IPR007...	6         	23          
+	           smart	SM00028 IPR019734...	79        	415         
+	     superfamily	SSF52540 IPR02741...	154       	1628        
+	         tigrfam	TIGR02532 IPR0129...	23        	567         
+-------------------------------------------------------------------------------------------</code></pre>
+
 **MetaSanity** generates a single summary database based on the results of the entire pipeline. The complete output contains elements such as the raw count data from peptidase annotation and pathway completion estimates from KEGG-Decoder. 
 
 **MetaSanity** also creates a database table for each genome. Each genome table contains all putative gene coding sequences and computed annotations.
