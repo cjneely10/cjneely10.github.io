@@ -1,13 +1,13 @@
 ---
 title: 'MetaSanity Demo - Running FuncSanity'
-date: 2019-09-06
-permalink: /posts/2019/09/MetaSanity-Demo-Running-FuncSanity/
+date: 2019-10-01
+permalink: /posts/2019/10/MetaSanity-Demo-Running-FuncSanity/
 tags:
   - MetaSanity
   - demos
 ---
 
-In this blog, we will continue our work from the [first demo blog](https://cjneely10.github.io/posts/2019/08/MetaSanity-Demo-Running-PhyloSanity/). Previously, we had evaluated a set of metagenomic assembled genomes (MAGs) for completion and contamination. We then queried our dataset for high quality, non-redundant genomes, and stored these to a separate directory.
+In this blog, we will continue our work from the [first demo blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-PhyloSanity/). Previously, we had evaluated a set of metagenomic assembled genomes (MAGs) for completion and contamination. We then queried our dataset for high quality, non-redundant genomes, and stored these to a separate directory.
 
 Now, we can begin annotating each genome.
 
@@ -387,4 +387,4 @@ Below is an example of a complete annotation, involving all programs running def
 
 **MetaSanity** also creates a database table for each genome. Each genome table contains all putative gene coding sequences and computed annotations.
 
-In the [next blog](https://cjneely10.github.io/posts/2019/09/MetaSanity-Demo-BioMetaDB/), we will explore **BioMetaDB** and its core functionality, which may be the best reason to use **MetaSanity**.
+In the [next blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-BioMetaDB/), we will explore **BioMetaDB** and its core functionality, which may be the best reason to use **MetaSanity**.
