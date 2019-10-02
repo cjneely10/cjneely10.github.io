@@ -64,7 +64,7 @@ Copy the default configuration file from your program package into your project 
 
 `cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/PhyloSanity.ini ./`
 
-The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. You can edit the config file in a terminal using `nano PhyloSanity.ini`.
+The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. You can edit the config file in a terminal using `nano PhyloSanity.ini`. The file `Complete-PhyloSanity.ini` in the project package contains the currently supported flags that are available to each program in the **PhyloSanity** pipeline.
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini.png) -->
 <pre><code># Docker/PhyloSanity.ini

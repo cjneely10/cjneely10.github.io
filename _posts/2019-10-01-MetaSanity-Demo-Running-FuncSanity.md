@@ -33,7 +33,7 @@ Copy the default configuration file from your program package into your project 
 
 `cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/FuncSanity.ini ./`
 
-The config file `FuncSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. Again, we'll edit the config file using `nano FuncSanity.ini`.
+The config file `FuncSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. Again, we'll edit the config file using `nano FuncSanity.ini`. The file `Complete-FuncSanity.ini` in the project package contains the currently supported flags that are available to each program in the **FuncSanity** pipeline.
 
 <pre><code># Docker/FuncSanity.ini
 # Default config file for running the FuncSanity pipeline
