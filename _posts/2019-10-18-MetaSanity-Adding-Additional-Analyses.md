@@ -175,4 +175,4 @@ There is much more that can be incorporated through the use of `DataTable` and `
 
 Citations
 ======
-Bowers, Robert M et al. “Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea.” Nature biotechnology vol. 35,8 (2017): 725-731. doi:10.1038/nbt.3893.
+Bowers, Robert M et al. “Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea.” *Nature biotechnology* vol. 35,8 (2017): 725-731. doi:10.1038/nbt.3893.
