@@ -48,8 +48,7 @@ Let's begin writing a small script. I will name this script `bowers_et_al_2017.p
 
 Begin by adding these lines:
 
-<pre><code>#!/usr/bin/env python3
-import sys
+<pre><code>import sys
 from BioMetaDB import get_table, DataTable
 
 assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py biometadb-project"
@@ -60,7 +59,7 @@ evaluation_data.query()
 dt = DataTable()</code></pre>
 
 
-The first two lines are pretty standard - we have our bash shebang for if we make this script executable, and we import the `sys` package for accessing command-line arguments. 
+We first import the `sys` package for accessing command-line arguments. 
 
 The following line imports the function `get_table`, which generates a `RecordList` for viewing our data. The next line is a check for users who run this script. Note that we have not checked for path existence in this script.
 
@@ -133,8 +132,7 @@ And that is it! We have just incorporated a genome quality analysis for all of o
 
 Here is the complete script:
 
-<pre><code>#!/usr/bin/env python3
-import sys
+<pre><code>import sys
 from BioMetaDB import get_table, DataTable
 
 assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py <biometadb-project>"
