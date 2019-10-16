@@ -52,7 +52,7 @@ Begin by adding these lines:
 import sys
 from BioMetaDB import get_table, DataTable
 
-assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py <biometadb-project>"
+assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py biometadb-project"
 
 evaluation_data = get_table(sys.argv[1], "evaluation")
 evaluation_data.query()
@@ -168,3 +168,11 @@ for genome in evaluation_data.keys():
 
 evaluation_data.save()
 evaluation_data.update(data=dt)</code></pre>
+
+
+There is much more that can be incorporated through the use of `DataTable` and `RecordList`! See the [BioMetaDB](https://github.com/cjneely10/MetaSanity) page for more information!
+
+
+Citations
+======
+Bowers, Robert M et al. “Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea.” Nature biotechnology vol. 35,8 (2017): 725-731. doi:10.1038/nbt.3893.
