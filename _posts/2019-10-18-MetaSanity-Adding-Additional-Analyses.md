@@ -137,7 +137,7 @@ Here is the complete script:
 import sys
 from BioMetaDB import get_table, DataTable
 
-assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py <biometadb-project>"
+assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py biometadb-project"
 
 evaluation_data = get_table(sys.argv[1], "evaluation")
 evaluation_data.query()
