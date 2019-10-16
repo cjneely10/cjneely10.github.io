@@ -1,7 +1,7 @@
 ---
 title: 'MetaSanity v1.1 - Adding additional analyses'
 date: 2019-10-18
-permalink: /posts/2019/10/MetaSanity-Demo-BioMetaDB/
+permalink: /posts/2019/10/MetaSanity-Adding-Additional-Analyses/
 tags:
   - MetaSanity
   - demos
