@@ -7,7 +7,7 @@ tags:
   - demos
 ---
 
-**MetaSanity v1.1** was released this week with some new features! See the [changelog](https://github.com/cjneely10/MetaSanity/blob/v0.0.4/CHANGELOG.md) for a complete list of changes in version 1.1. 
+**MetaSanity v1.1** releases 10/18/2019 with some new features! See the [changelog](https://github.com/cjneely10/MetaSanity/blob/v0.0.4/CHANGELOG.md) for a complete list of changes in version 1.1. 
 
 We also incorporated a more standardized analysis for determining genome quality (Bowers et al). This blog will provide a walk-through for how we implemented this protocol.
 
