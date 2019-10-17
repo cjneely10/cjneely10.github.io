@@ -13,36 +13,49 @@ We also incorporated a more standardized analysis for determining genome quality
 
 Why do we want to explain this? **BioMetaDB** is designed to be updated, and the underlying SQL engine handles these updates easily.
 
-MetaSanity v1.1
+Once a **BioMetaDB** project is created from a **MetaSanity** run, we can access this project from our own code.
+
+MetaSanity v1.1 - Adding genome quality labels
 ======
 
 Goals
 ------
-Walk through building an external analysis that incorporates a **BioMetaDB** project. The final script is packaged with each **MetaSanity** installation in the `Accessories` directory.
+Build an analysis that incorporates a **BioMetaDB** project. 
 
-Specifically, we will be:
+The topics covered in this blog are provided in a script in your **MetaSanity** installation in the `Accessories` directory.
+
+In this blog, we will be:
 
 - Adding a column to our **BioMetaDB** database table that describes a genome's quality as `high`, `medium`, `low`, or `incomplete`.
 - Update existing data for `incomplete` genomes.
 
 
 Preparing
-----
+------
 Prior to running this script, ensure that **BioMetaDB** is on your python path. You can add it to your path by appending the following line to your `.bashrc` file and restarting your bash session:
 
 `export PYTHONPATH=/path/to/BioMetaDB:$PYTHONPATH`
 
 
-Part 1 - `RecordList` and `DataTable`
+Backing up your project
 ------
-Running the `dbdm` script from your **BioMetaDB** installation creates Python objects of the class `RecordList`. Without getting too deep into OOP concepts, we can think of a `RecordList` as:
+Since this particular update is released by our lab, a backup is not needed, assuming that you have not radically changed your project's architecture since running **MetaSanity**. 
 
-- A list (e.g. record-1, record-2, etc.) AND a dictionary (e.g. record1: metadata, etc.)
-- A way to query our BioMetaDB project
+However, this blog provides you with the tools to begin drastically changing your **BioMetaDB** project on your own. Users are STRONGLY advised to create a copy of their **BioMetaDB** project prior to running any update that attempts to update the project architecture that is not directly released from this lab.
+
+
+Part 1 - `RecordList` and `UpdateData`
+------
+Without getting too deep into OOP concepts, we can think of a `RecordList` as:
+
+- A list (e.g. record-1, record-2, etc.) AND a dictionary (e.g. record1: metadata, etc.) of the results in our project.
+- A way to query our BioMetaDB project for specific data.
 - A way to get FASTA records or metadata
 - A method to update the underlying database structure
 
-Once a **BioMetaDB** project is created from a **MetaSanity** run, we can access this project from our own code.
+We can think of `UpdateData` as an empty box - we put into it specific genome ids that we wish to update, and we add data categories and values as needed. This class generates a `.tsv` file, which **BioMetaDB** uses to update its database table schema.
+
+Moreover, `UpdateData` is used to add *new* columns to our **BioMetaDB** project. If we are seeking to add a data column to our table (as we are here, the column "quality") *that does not already exist*, then we must use `UpdateData`. Otherwise, a `RecordList` returned by the function `get_table` will suffice for making updates to columns *that already exist* or for genome records *that already exist*.
 
 Let's begin writing a small script. I will name this script `bowers_et_al_2017.py`.
 
@@ -50,14 +63,14 @@ Begin by adding these lines:
 
 <pre><code>#!/usr/bin/env python3
 import sys
-from BioMetaDB import get_table, DataTable
+from BioMetaDB import get_table, UpdateData
 
 assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py biometadb-project"
 
 evaluation_data = get_table(sys.argv[1], "evaluation")
 evaluation_data.query()
 
-dt = DataTable()</code></pre>
+dt = UpdateData()</code></pre>
 
 
 The first two lines are pretty standard - we have our bash shebang for if we make this script executable, and we import the `sys` package for accessing command-line arguments. 
@@ -66,14 +79,14 @@ The following line imports the function `get_table`, which generates a `RecordLi
 
 Next, we use the function `get_table` to look at the **BioMetaDB** project the user passed for the table named "evaluation", and query this table for all records.
 
-Finally, we create a `DataTable` object named dt to store our data prior to updating the **BioMetaDB** project.
+Finally, we create an `UpdateData` object named dt to store our data prior to updating the **BioMetaDB** project.
 
 
 Part 2 - Gathering data
 ------
 Now that all of our variables are initialized, we can search our project for valid data.
 
-In our case, we will assign `high`, `medium`, `low`, and `incomplete` quality scores to our genomes based on the Bowers paper. In that paper, these qualities are defined as:
+We will assign `high`, `medium`, `low`, and `incomplete` quality labels to our genomes based on the provisions established in the Bowers paper. In that paper, these qualities are defined as:
 
 - High - Genome has 23S and 16S rRNA and at least 18 tRNAs. Genome is >90% complete and <5% contaminated based on `CheckM` output (presence of single copy genes).
 - Medium - Genome completion &ge;50% complete and <10% contaminated.
@@ -106,7 +119,7 @@ With that in mind, let's look at the next section of the script:
         dt[genome].quality = "incomplete"
         evaluation_data[genome].is_complete = False</code></pre>
 
-We are using a `for` loop to check each genome for our search criteria. By default, every key returned by `keys()` is the filename of a FASTA file. **FuncSanity** generated a database table for every genome it analyzed, which stores out annotations. By calling `get_table` with this table name, we get the associated annotations.
+We are using a `for` loop to check each genome for our search criteria. By default, every key returned by `keys` is the filename of a FASTA file. **FuncSanity** generated a database table for every genome it analyzed, which stores out annotations. By calling `get_table` with this table name (less the extension), we get the associated annotations.
 
 From here. we can query the `RecordList` stored in `genome_rl` just as we did the one stored in `evaluation_data`. We first check for tRNA annotations and store the number of records that match out query using the `len` function. We then query for 23S rRNA and check if any were returned. We do the same for 16S rRNA. The next line combines these two values for a single check - a bit superfluous, but it is better to be clear!
 
@@ -114,9 +127,9 @@ Next, we check our genome's completion value. Since `evaluation_data` is a list/
 
 Finally, we assign qualities to our data. Each portion of the `if` statement refers to one of the Bowers quality assignments.
 
-As I mentioned at the beginning of this blog, our goal is to update the underlying database with an additional column (the quality scores), and we wish to adjust any incomplete genomes to change their **PhyloSanity**-determined `is_complete` value to reflect their newly determined status.
+As I mentioned at the beginning of this blog, our goal is to update the underlying database with an additional column (the quality labels), and we wish to adjust any incomplete genomes to change their **PhyloSanity**-determined `is_complete` value to reflect their newly determined status.
 
-The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate a `DataTable`. In each portion of the `if` statement, we directly assign a genome's corresponding quality score to the `DataTable`, as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
+The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate a `UpdateData`. In each portion of the `if` statement, we directly assign a genome's corresponding quality score to the `UpdateData`, as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
 
 Part 3 - Saving data and wrapping up
 ------
@@ -127,7 +140,9 @@ The final portion of our code consists of two lines:
 evaluation_data.update(data=dt)</code></pre>
 
 The first line updates all values that were changed in the existing database architecture.
-The second line stores the new database info to the **BioMetaDB** project.
+The second line stores the new database info to the **BioMetaDB** project. Optionally, a folder of FASTA records could be provided to add to a database table by passing `directory_name="/path/to/genome-folder"`.
+
+The `update` function will destroy the existing project architecture; so, if we want to use our new project structure, we must then call `get_table` again to get the new project data as a `RecordList`.
 
 And that is it! We have just incorporated a genome quality analysis for all of our genomes in less than 40 lines of code.
 
@@ -135,14 +150,14 @@ Here is the complete script:
 
 <pre><code>#!/usr/bin/env python3
 import sys
-from BioMetaDB import get_table, DataTable
+from BioMetaDB import get_table, UpdateData
 
 assert len(sys.argv) == 2, "usage: python3 bowers_et_al_2017.py biometadb-project"
 
 evaluation_data = get_table(sys.argv[1], "evaluation")
 evaluation_data.query()
 
-dt = DataTable()
+dt = UpdateData()
 for genome in evaluation_data.keys():
     genome_id = genome.rstrip(".fna")
     genome_rl = get_table(sys.argv[1], table_name=genome_id)
@@ -170,7 +185,7 @@ evaluation_data.save()
 evaluation_data.update(data=dt)</code></pre>
 
 
-There is much more that can be incorporated through the use of `DataTable` and `RecordList`! See the [BioMetaDB](https://github.com/cjneely10/MetaSanity) page for more information!
+There is much more that can be incorporated through the use of `UpdateData` and `RecordList`! See the [BioMetaDB](https://github.com/cjneely10/BioMetaDB) page for more information!
 
 
 Citations
