@@ -22,7 +22,7 @@ Goals
 ------
 Build an analysis that incorporates a **BioMetaDB** project. 
 
-The topics covered in this blog are provided in a script in your **MetaSanity** installation in the `Accessories` directory.
+The script that we will generate in this blog is in your **MetaSanity** installation in the `Accessories` directory should you wish to complete the analysis without this mini-lesson in Python scripting.
 
 In this blog, we will be:
 
@@ -34,26 +34,26 @@ Preparing
 ------
 Prior to running this script, ensure that **BioMetaDB** is on your python path. You can add it to your path by appending the following line to your `.bashrc` file and restarting your bash session:
 
-`export PYTHONPATH=/path/to/BioMetaDB:$PYTHONPATH`
+`export PYTHONPATH=/path/to/MetaSanity/BioMetaDB:$PYTHONPATH`
 
 
 Backing up your project
 ------
 Since this particular update is released by our lab, a backup is not needed, assuming that you have not radically changed your project's architecture since running **MetaSanity**. 
 
-However, this blog provides you with the tools to begin drastically changing your **BioMetaDB** project on your own. Users are STRONGLY advised to create a copy of their **BioMetaDB** project prior to running any update that attempts to update the project architecture that is not directly released from this lab.
+However, this blog provides you with the tools to begin drastically changing your **BioMetaDB** project on your own. Users are STRONGLY advised to create a copy of their **BioMetaDB** project prior to running any update that is not directly released from this lab.
 
 
 Part 1 - `RecordList` and `UpdateData`
 ------
 Without getting too deep into OOP concepts, we can think of a `RecordList` as:
 
-- A list (e.g. record-1, record-2, etc.) AND a dictionary (e.g. record1: metadata, etc.) of the results in our project.
-- A way to query our BioMetaDB project for specific data.
+- A list (e.g. [record-1, record-2] etc.) AND a dictionary (e.g. {record1: metadata} etc.) of the metadata in our project
+- A way to query our BioMetaDB project for specific gene calls, annotations, evaluation scores, etc.
 - A way to get FASTA records or metadata
 - A method to update the underlying database structure
 
-We can think of `UpdateData` as an empty box - we put into it specific genome ids that we wish to update, and we add data categories and values as needed. This class generates a `.tsv` file, which **BioMetaDB** uses to update its database table schema.
+We can think of `UpdateData` as an empty data frame - we put into it specific genome ids that we wish to update, and we add data categories and values as needed. This class generates a `.tsv` file, which **BioMetaDB** uses to update its database table schema.
 
 Moreover, `UpdateData` is used to add *new* columns to our **BioMetaDB** project. If we are seeking to add a data column to our table (as we are here, the column "quality") *that does not already exist*, then we must use `UpdateData`. Otherwise, a `RecordList` returned by the function `get_table` will suffice for making updates to columns *that already exist* or for genome records *that already exist*.
 
@@ -75,9 +75,9 @@ dt = UpdateData()</code></pre>
 
 The first two lines are pretty standard - we have our bash shebang for if we make this script executable, and we import the `sys` package for accessing command-line arguments. 
 
-The following line imports the function `get_table`, which generates a `RecordList` for viewing our data. The next line is a check for users who run this script. Note that we have not checked for path existence in this script.
+The following line imports the function `get_table`, which generates a `RecordList` for viewing our data. The data structure `UpdateData` is also imported. The next line is a check for users who run this script. Note that we have not checked that the path actually exists (we'll leave that to you).
 
-Next, we use the function `get_table` to look at the **BioMetaDB** project the user passed for the table named "evaluation", and query this table for all records.
+Next, we use the function `get_table` to look at the **BioMetaDB** project the user passed for the table named "evaluation", and query this table for all records. Note: this requires that **PhyloSanity** ran successfully.
 
 Finally, we create an `UpdateData` object named dt to store our data prior to updating the **BioMetaDB** project.
 
@@ -88,7 +88,7 @@ Now that all of our variables are initialized, we can search our project for val
 
 We will assign `high`, `medium`, `low`, and `incomplete` quality labels to our genomes based on the provisions established in the Bowers paper. In that paper, these qualities are defined as:
 
-- High - Genome has 23S and 16S rRNA and at least 18 tRNAs. Genome is >90% complete and <5% contaminated based on `CheckM` output (presence of single copy genes).
+- High - Genome codes for 23S and 16S rRNA and at least 18 tRNAs. Genome is >90% complete and <5% contaminated based on `CheckM` output (presence of single copy genes).
 - Medium - Genome completion &ge;50% complete and <10% contaminated.
 - Low - Genome completion <50% complete and <10% contaminated.
 
@@ -129,7 +129,7 @@ Finally, we assign qualities to our data. Each portion of the `if` statement ref
 
 As I mentioned at the beginning of this blog, our goal is to update the underlying database with an additional column (the quality labels), and we wish to adjust any incomplete genomes to change their **PhyloSanity**-determined `is_complete` value to reflect their newly determined status.
 
-The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate a `UpdateData`. In each portion of the `if` statement, we directly assign a genome's corresponding quality score to the `UpdateData`, as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
+The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate an `UpdateData` object. In each portion of the `if` statement, we directly assign a genome's corresponding quality score by using `UpdateData` as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
 
 Part 3 - Saving data and wrapping up
 ------
@@ -190,4 +190,4 @@ There is much more that can be incorporated through the use of `UpdateData` and 
 
 Citations
 ======
-Bowers, Robert M et al. “Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea.” *Nature biotechnology* vol. 35,8 (2017): 725-731. doi:10.1038/nbt.3893.
+Bowers, Robert M et al. “Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea.” *Nature biotechnology* vol. 35,8 (2017): 725-731. doi:10.1038/nbt.3893. [https://www.nature.com/articles/nbt.3893](https://www.nature.com/articles/nbt.3893)
