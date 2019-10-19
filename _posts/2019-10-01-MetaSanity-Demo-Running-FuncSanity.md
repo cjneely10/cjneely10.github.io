@@ -371,12 +371,12 @@ Below is an example of a complete annotation, involving all programs running def
 	             cdd	cd02440             	26        	808         
 	           hamap	MF_00600 IPR00184...	3         	331         
 	is_extracellular	False               	73        	77          
-	              ko	K08884              	12        	987         
+	              ko	K02456 general se...	21        	1072         
 	     merops_pfam	PF00082             	7         	77          
 	         panther	PTHR43289           	15        	1631        
 	            pfam	PF00005 IPR003439...	32        	1764        
 	          prodom	PD001179            	5         	34          
-	          prokka	pknD_10             	8         	526         
+	          prokka	ybhF_1 COG1131 pu...	11        	847
 	            sfld	SFLDS00029 IPR007...	6         	23          
 	           smart	SM00028 IPR019734...	79        	415         
 	     superfamily	SSF52540 IPR02741...	154       	1628        
