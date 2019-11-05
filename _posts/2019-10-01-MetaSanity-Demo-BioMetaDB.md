@@ -120,6 +120,10 @@ Number of Records:      1749/4167
               prokka    atsA_12                 19          567         
 -------------------------------------------------------------------------------------------</code></pre>
 
+View a summary of gene calls for TOBG-CPC-51 that are given 'hypothetical protein' annotations.
+
+`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q "unannotated AND prokka == 'hypothetical protein'"`
+
 View a summary of all genomes that have at least a partial predicted glycolysis or chemotaxis pathway.
 
 `dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0"`
@@ -174,7 +178,9 @@ Quick notes
 
 - For genome tables (ex. tobg-cpc-85, etc.), we can do the following in our queries:
     - Add `_annot` to columns in the 2nd section of our database table - `ko_annot`, `prokka_annot`, etc.
+    - Add `_unannot` to columns in the 2nd section of our database table.
     - Search for gene calls with at least one annotation using `annotated`.
+    - Search for gene calls with no annotations (or that were annotated as "hypothetical protein") using `unannotated`.
 - In the evaluation table, we can use the following:
     - Use `hqnr` to search for high quality, non-redundant genomes.
 - In every other case, we treat data with the following considerations:
