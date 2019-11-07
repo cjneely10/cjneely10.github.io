@@ -129,7 +129,7 @@ Finally, we assign qualities to our data. Each portion of the `if` statement ref
 
 As I mentioned at the beginning of this blog, our goal is to update the underlying database with an additional column (the quality labels), and we wish to adjust any incomplete genomes to change their **PhyloSanity**-determined `is_complete` value to reflect their newly determined status.
 
-The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate an `UpdateData` object. In each portion of the `if` statement, we directly assign a genome's corresponding quality score by using `UpdateData` as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
+The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate an `UpdateData` object. In this case, we added the column `quality`. In each portion of the `if` statement, we directly assign a genome's corresponding quality score by using `UpdateData` as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
 
 Part 3 - Saving data and wrapping up
 ------
