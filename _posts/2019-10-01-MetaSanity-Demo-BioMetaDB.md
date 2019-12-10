@@ -91,7 +91,7 @@ View a summary of all genomes that were deemed high-quality and non-redundant by
 
 View a summary of gene calls for TOBG-CPC-51 that were given annotations by **FuncSanity**.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q annotated`
+`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q annotated -r`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
  Project root directory:    Metagenomes
@@ -122,15 +122,15 @@ Number of Records:      1749/4167
 
 View a summary of gene calls for TOBG-CPC-51 that are given 'hypothetical protein' annotations.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q "unannotated AND prokka == 'hypothetical protein'"`
+`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q "unannotated AND prokka == 'hypothetical protein'" -r`
 
 View a summary of all genomes that have at least a partial predicted glycolysis or chemotaxis pathway.
 
-`dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0"`
+`dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0" -r`
 
 View a summary of gene calls for TOBG-CPC-997 that have both KO and MEROPS-Pfam annotations.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-np-997 -q "ko_annot AND merops_pfam_annot"`
+`dbdm -c Metagenomes SUMMARIZE -t tobg-np-997 -q "ko_annot AND merops_pfam_annot" -r`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
  Project root directory:    Metagenomes
@@ -181,6 +181,7 @@ Quick notes
     - Add `_unannot` to columns in the 2nd section of our database table.
     - Search for gene calls with at least one annotation using `annotated`.
     - Search for gene calls with no annotations (or that were annotated as "hypothetical protein") using `unannotated`.
+    - The `-r` flag returns the first word of a given annotation - e.g., it only returns the ID (exluding Prokka)
 - In the evaluation table, we can use the following:
     - Use `hqnr` to search for high quality, non-redundant genomes.
 - In every other case, we treat data with the following considerations:
