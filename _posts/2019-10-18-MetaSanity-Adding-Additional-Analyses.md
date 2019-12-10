@@ -109,14 +109,14 @@ With that in mind, let's look at the next section of the script:
     completion = evaluation_data[genome].completion
     contamination = evaluation_data[genome].contamination
     # Bowers et al determinations for MAG/SAG assembly quality
-    if num_tRNAs >= 18 and has_23_16_rRNA and completion > 90 and contamination < 5:
-        dt[genome].quality = "high"
+    if (num_tRNAs >= 18 and has_23_16_rRNA) and completion > 90 and contamination < 5:
+        dt[genome].setattr("quality", "high")
     elif completion >= 50 and contamination < 10:
-        dt[genome].quality = "medium"
+        dt[genome].setattr("quality", "medium")
     elif completion < 50 and contamination < 10:
-        dt[genome].quality = "low"
+        dt[genome].setattr("quality", "low")
     else:
-        dt[genome].quality = "incomplete"
+        dt[genome].setattr("quality", "incomplete")
         evaluation_data[genome].is_complete = False</code></pre>
 
 We are using a `for` loop to check each genome for our search criteria. By default, every key returned by `keys` is the filename of a FASTA file. **FuncSanity** generated a database table for every genome it analyzed, which stores out annotations. By calling `get_table` with this table name (less the extension), we get the associated annotations.
@@ -129,7 +129,7 @@ Finally, we assign qualities to our data. Each portion of the `if` statement ref
 
 As I mentioned at the beginning of this blog, our goal is to update the underlying database with an additional column (the quality labels), and we wish to adjust any incomplete genomes to change their **PhyloSanity**-determined `is_complete` value to reflect their newly determined status.
 
-The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate an `UpdateData` object. In each portion of the `if` statement, we directly assign a genome's corresponding quality score by using `UpdateData` as if it were a dictionary. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
+The `RecordList` class handles changes to the existing architecture; but, if we want to add additional column data, we must incorporate an `UpdateData` object. In each portion of the `if` statement, we directly assign a genome's corresponding quality score by using `UpdateData`. In the `else` portion of the `if` block, we access the `RecordList` object and change its existing `is_complete` value.
 
 Part 3 - Saving data and wrapping up
 ------
@@ -171,14 +171,14 @@ for genome in evaluation_data.keys():
     completion = evaluation_data[genome].completion
     contamination = evaluation_data[genome].contamination
     # Bowers et al determinations for MAG/SAG assembly quality
-    if num_tRNAs >= 18 and has_23_16_rRNA and completion > 90 and contamination < 5:
-        dt[genome].quality = "high"
+    if (num_tRNAs >= 18 and has_23_16_rRNA) and completion > 90 and contamination < 5:
+        dt[genome].setattr("quality", "high")
     elif completion >= 50 and contamination < 10:
-        dt[genome].quality = "medium"
+        dt[genome].setattr("quality", "medium")
     elif completion < 50 and contamination < 10:
-        dt[genome].quality = "low"
+        dt[genome].setattr("quality", "low")
     else:
-        dt[genome].quality = "incomplete"
+        dt[genome].setattr("quality", "incomplete")
         evaluation_data[genome].is_complete = False
 
 evaluation_data.save()
