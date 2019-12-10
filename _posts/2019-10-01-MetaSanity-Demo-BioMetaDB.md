@@ -40,6 +40,8 @@ You can view these tables easily using:
 
 Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
 
+Using the `-r/--truncate` flag will return annotation IDs instead of descriptions for all output, excluding Prokka.
+
 `dbdm SUMMARIZE`
 
 <pre><code>SUMMARIZE: View summary of all tables in database
@@ -194,8 +196,6 @@ Quick notes
 - Ensure proper query formatting
     - Provide adequate spacing, as needed:
         - `"is_completeANDdomain == 'Bacteria'"` would fail, whereas `"is_complete AND domain == 'Bacteria'"` is valid.
-        - `"is_complete~>ko_annot"` can lead to issues, but `"is_complete ~> ko_annot"` is perfect.
-            - We will cover the `~>` **query operator** in a later section of this blog.
 
 
 `dbdm SUMMARIZE`
@@ -276,7 +276,7 @@ In general, **we can link `evaluation` and `annotation`** using the format `eval
 
 Here are a few more examples:
 
-`dbdm -c Metagenomes SUMMARIZE -q "hqnr ~> annotated"`
+`dbdm -c Metagenomes SUMMARIZE -q "hqnr ~> annotated" -r`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
  Project root directory:    Metagenomes
