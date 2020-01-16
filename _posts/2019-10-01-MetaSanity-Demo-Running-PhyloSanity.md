@@ -201,9 +201,9 @@ Once **PhyloSanity** is complete, the default project directory structure will r
 	│   └── fastani_results.txt
 	├── gtdbtk_results
 	│   └── GTDBTK.bac120.summary.tsv 
+	├── metagenome_evaluation.list
+	├── metagenome_evaluation.tsv
 ├── Metagenomes/
-├── metagenome_evaluation.list
-├── metagenome_evaluation.tsv
 └── PhyloSanity.ini</code></pre>
 
 By default, the `out/` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all metadata stored in a `SQLite3` database.
