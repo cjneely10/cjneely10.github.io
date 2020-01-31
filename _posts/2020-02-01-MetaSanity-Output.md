@@ -11,7 +11,7 @@ In a [previous post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-B
 
 <img src="https://cjneely10.github.io/files/Figure1-Workflow.png" style="border:2px solid black">
 
-In this blog post, we will walk through the raw and parsed output from each of the programs that **MetaSanity** runs. This information is also available as a <a href="https://1drv.ms/p/s!AliNbVaBWXheiagJZmV_9pGlzOoXYw" target="_blank">PowerPoint presentation</a> (views best using PowerPoint Online).
+Given the complexity and volume of this application, we will walk through the raw and parsed output from each of the programs that **MetaSanity** runs. This information is also available as a <a href="https://1drv.ms/p/s!AliNbVaBWXheiagJZmV_9pGlzOoXYw" target="_blank">PowerPoint presentation</a> (views best using PowerPoint Online).
 
 # MetaSanity output
 
