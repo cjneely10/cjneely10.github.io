@@ -38,29 +38,29 @@ The remaining directories contain the raw output from each of the programs that 
 
 ### CheckM
 
-`checkm_results/checkm_lineageWF_results.qa.txt`
+`checkm_results/checkm_lineageWF_results.qa.txt` is parsed for contamination and completion estimates.
 
 ### FastANI
 
-`fastani_results/fastani_results.txt`
+`fastani_results/fastani_results.txt` contains ANI information used in redundancy determination
 
 ### GTDB-Tk
 
-`gtdbtk_results/GTDBTK.bac120.summary.tsv`
+`gtdbtk_results/GTDBTK.bac120.summary.tsv` optionally provides putative phylogeny.
 
 
 ## FuncSanity
 
 For each MAG that is analyzed, a series or files may be generated.
 
-### Prodigal
+### Prodigal gene caller
 
 <pre><code>prodigal_results/
 ├── mag1.mrna.fna
 ├── mag1.protein.faa
 ├── mag1.txt</code></pre>
 
-### Prokka
+### Prokka (optional gene caller and annotation pipeline)
 
 <pre><code>prokka_results/
 ├── mag1/
@@ -78,6 +78,7 @@ The remaining files in each directory are the outputs from each Prokka run.
 ├── mag1.tsv  # Original output
 ├── mag1.amended.tsv  # Parsed output</code></pre>
 
+InterProScan contributes the most to MetaSanity runtimes.
 
 ### KoFamScan and KEGG-Decoder
 
