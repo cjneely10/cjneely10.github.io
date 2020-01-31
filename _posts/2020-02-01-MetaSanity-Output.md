@@ -9,7 +9,7 @@ tags:
 
 In a [previous post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-BioMetaDB/), we walked through several examples of using **BioMetaDB** - a Bio-focused command-line SQL wrapper package - to query the results of our **MetaSanity** pipeline runs. The contents of each project is self-contained, making it very easy for users to focus their attention on getting specific information.
 
-<img src="https://cjneely10.github.io/files/Figure1-Workflow.png" style="border:1px solid black">
+<img src="https://cjneely10.github.io/files/Figure1-Workflow.png" style="border:2px solid black">
 
 In this blog post, we will walk through the raw and parsed output from each of the programs that **MetaSanity** runs. This information is also available as a <a href="https://1drv.ms/p/s!AliNbVaBWXheiagJZmV_9pGlzOoXYw" target="_blank">PowerPoint presentation</a> (views best using PowerPoint Online).
 
