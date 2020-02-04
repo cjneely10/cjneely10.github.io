@@ -9,7 +9,7 @@ tags:
 
 **MetaSanity v1.1** releases 10/18/2019 with some new features! See the [changelog](https://github.com/cjneely10/MetaSanity/blob/v0.0.4/CHANGELOG.md) for a complete list of changes in version 1.1. 
 
-We also incorporated a more standardized analysis for determining genome quality (Bowers et al). This blog will provide a walk-through for how we implemented this protocol.
+We also incorporated a more standardized analysis for determining genome quality ([Bowers et al](https://www.nature.com/articles/nbt.3893)). This blog will provide a walk-through for how we implemented this protocol.
 
 Why do we want to explain this? **BioMetaDB** is designed to be updated, and the underlying SQL engine handles these updates easily.
 
