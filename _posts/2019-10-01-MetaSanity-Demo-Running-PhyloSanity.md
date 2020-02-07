@@ -73,7 +73,7 @@ The config file `PhyloSanity.ini` can be used as-is; however, users may add addi
 # Users are recommended to edit copies of this file only
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# The following pipes **MUST** be set
+# The following **MUST** be set
 
 [CHECKM]
 PATH = /usr/local/bin/checkm

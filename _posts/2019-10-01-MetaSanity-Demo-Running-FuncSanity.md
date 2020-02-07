@@ -138,7 +138,7 @@ I will raise the thread count on each applicable program to better match my syst
 # Users are recommended to edit copies of this file only
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# The following pipes **MUST** be set
+# The following **MUST** be set
 
 [PRODIGAL]
 PATH = /usr/bin/prodigal
