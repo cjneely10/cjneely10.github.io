@@ -21,7 +21,7 @@ We are continuing our work in the directory `$HOME/test-run`. After the last blo
 ├── HighQuality/
 ├── eval.log
 ├── out/
-├── Metagenomes/
+├── MSResults/
 └── PhyloSanity.ini</code></pre>                         
 
 Part 2 - FuncSanity
@@ -59,7 +59,7 @@ PATH = /usr/bin/hmmconvert
 PATH = /usr/bin/hmmpress
 
 [BIOMETADB]
---db_name = Metagenomes
+--db_name = MSResults
 FLAGS = -s
 
 [DIAMOND]
@@ -67,8 +67,8 @@ PATH = /usr/bin/diamond
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# The following pipe sections may optionally be set
-# Ensure that the entire pipe section is valid,
+# The following sections may optionally be set
+# Ensure that the entire section is valid,
 # or deleted/commented out, prior to running pipeline
 
 
@@ -156,7 +156,7 @@ PATH = /usr/bin/hmmconvert
 PATH = /usr/bin/hmmpress
 
 [BIOMETADB]
---db_name = Metagenomes
+--db_name = MSResults
 FLAGS = -s
 
 [DIAMOND]
@@ -164,8 +164,8 @@ PATH = /usr/bin/diamond
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# The following pipe sections may optionally be set
-# Ensure that the entire pipe section is valid,
+# The following sections may optionally be set
+# Ensure that the entire section is valid,
 # or deleted/commented out, prior to running pipeline
 
 
@@ -234,7 +234,7 @@ The project directory `test-run` should resemble the following structure:
 ├── HighQuality/
 ├── eval.log
 ├── out/
-├── Metagenomes/
+├── MSResults/
 └── PhyloSanity.ini</code></pre>
 
 At this point, we can choose to annotate the entire dataset, or just the high-quality, non-redundant dataset. For the purposes of this blog, we will annotate the entire dataset.
@@ -246,6 +246,10 @@ For the purpose of protein localization predictions and Prokka annotations, by d
 Example:
 
 `example-fasta-file.fna\tArchaea\tgram+\n`
+
+Fortunately, this file can be automatically generated using the `generate-typefile.py` script in the `MetaSanity/Accessories/` folder of the **MetaSanity** installation. Assuming that the directory contents are on your path, generate the type-file `typefile.list` by using:
+
+`generate-typefile.py MSResults`
 
 From within this directory, run the **FuncSanity** pipeline. You may redirect log messages to a separate file.
 
@@ -263,84 +267,22 @@ Once **FuncSanity** is complete, the project directory structure will resemble t
 ├── HighQuality/
 ├── eval.log
 ├── out/
-├── Metagenomes/
+├── MSResults/
 └── PhyloSanity.ini</code></pre>
 
 **FuncSanity** added completed outputs into the existing `out/` directory and added its output to that directory. At this point, the **MetaSanity** pipeline is complete. If I decided to later incorporate PSORTb or InterProScan, I can simply update my `FuncSanity.ini` config file and rerun with the same command as above.
 
-Within the `out/` directory, each input genome will have its own tab-delimited output file that ends in `.metagenome_annotation.tsv`. If the peptidase annotation + extracellular prediction were run, then summary data is in the `peptidase_results/combined_results` folder. Also, if the KEGG pathway annotation was run, then summary data is in `kegg_results/biodata_results`, including heatmap visualizations of the metabolic pathways calculated as part of KEGG-Decoder. All of this data is populated into the **BioMetaDB** project stored in the `Metagenomes` directory.
+Within the `out/` directory, each input genome will have its own tab-delimited output file that ends in `.annotation.tsv`. If the peptidase annotation + extracellular prediction were run, then summary data is in the `peptidase_results/combined_results` folder. Also, if the KEGG pathway annotation was run, then summary data is in `kegg_results/biodata_results`, including heatmap visualizations of the metabolic pathways calculated as part of KEGG-Decoder. Any additional information will be in the file `functions.tsv`. All of this data is populated into the **BioMetaDB** project stored in the `MSResults` directory.
 
 We can generate a quick summary of this data using a command-line query:
 
-`dbdm SUMMARIZE -c Metagenomes`
+`dbdm SUMMARIZE -c MSResults`
 
-Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
+Note that we can omit the `-c MSResults` if we are working in a directory that has no other **BioMetaDB** projects.
 
 `dbdm SUMMARIZE`
 
 Depending on the number of genomes, a good deal of output will display on your terminal. This is great, but it would be very helpful to be able to work with and manipulate this data. **BioMetaDB** steps in to provide a simple command-line interface for accessing your data quickly and easily.
-
-Summary of individual program output
-------
-Each program's output is stored in a folder that ends with `_results`. Below is a sample directory structure that highlights raw output used to generate the final **BioMetaDB** project.
-
-<pre><code>out/
-├── interproscan_results
-│   ├── TOBG-CPC-96.tsv
-│	...
-├── kegg_results
-	├── biodata_results
-	│   ├── decode-expand_heatmap.svg
-	│   ├── function_heatmap.svg
-	│   ├── hmm_heatmap.svg
-	│   ├── KEGG.decoder.tsv
-	│   ├── KEGG.expander.tsv
-	│   └── KEGG.final.tsv
-	├── hmmsearch_results
-	│   ├── combined.hmm
-	│   └── combined.hmm.log
-	└── kofamscan_results
-	    └── TOBG-CPC-96.tsv
-	    ...
-├── metagenome_annotation.list
-├── peptidase_results
-│	├── cazy
-│	│   ├── hmmsearch_results
-│	│		├── TOBG-CPC-96.cazy_hmm.list
-│	│		...
-│	│   ├── TOBG-CPC-96.cazy_assignments.byprot.tsv
-│	│   ├── TOBG-CPC-96.cazy_assignments.tsv
-│	│	...
-│	├── merops
-│	│   ├── hmmsearch_results
-│	│		├── TOBG-CPC-96.merops_hmm.list
-│	│		...
-│	│   ├── TOBG-CPC-96.merops.protein.faa
-│	│	...
-│	├── psortb_results
-│	│   ├── TOBG-CPC-96.tbl
-│		...
-│	├── signalp_results
-│	│   ├── TOBG-CPC-96.signalp.tbl
-│	│	...
-│	├── TOBG-CPC-96.merops.tsv
-│	├── TOBG-CPC-96.pfam.by_prot.tsv
-│	└── TOBG-CPC-96.pfam.tsv
-│	...
-├── prodigal_results
-│   ├── TOBG-CPC-96.mrna.fna
-│   └── TOBG-CPC-96.protein.faa
-├── prokka_results
-│	├── TOBG-CPC-96
-│	│    └── TOBG-CPC-96.tsv
-│	...
-├── TOBG-CPC-96.metagenome_annotation.tsv
-...
-└── virsorter_results
-    ├── TOBG-CPC-96
-	    └── virsorter-out
-	        └── VIRSorter_global-phage-signal.csv
-    ...</code></pre>
 
 Summary of **BioMetaDB** project output
 ------
@@ -348,8 +290,8 @@ Summary of **BioMetaDB** project output
 Below is an example of a complete annotation, involving all programs running default options. InterProScan counts are based on total times each domain was identified. Phage and prophage summaries are present, indicating at least one viral contig or prophage. If VirSorter identified no viral matches, then these columns would not be present.
 
 <pre><code>SUMMARIZE:	View summary of all tables in database
- Project root directory:	Metagenomes
- Name of database:		Metagenomes.db
+ Project root directory:	MSResults
+ Name of database:		MSResults.db
 
 *******************************************************************************************
 	     Table Name:	tobg-cpc-96 

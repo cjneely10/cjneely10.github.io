@@ -111,8 +111,9 @@ Service and leadership
   * Drove sales, payroll, and productivity.
   * Focus on team communication and recognition in all departments.
 
-Achievements
+Awards, Honors, and Achievements
 ======
+* 2020 Alpha Lambda Delta Honors Society
 * 2019 Rio Hondo College Outstanding Student Award - Biology
 * 2018 Rio Hondo College Outstanding Student Award - Engineering
 * 2018 Great Minds in STEM/HENAAC Scholarship recipient

@@ -39,7 +39,7 @@ Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users 
 
 Installation
 ------
-See the [wiki page](https://github.com/cjneely10/MetaSanity/wiki/2-Installation) for installation instructions. This blog post assumes that users have completed instructions for the optional `.bashrc` installation, which allow **MetaSanity** and **BioMetaDB** to be run using the aliases `MetaSanity` and `dbdm`, respectively.
+See the [wiki page](https://github.com/cjneely10/MetaSanity/wiki/2-Installation) for installation instructions. This blog post assumes that users have completed instructions for the optional installation.
 
 Project preparation
 ======
@@ -47,9 +47,9 @@ In this blog, we will generate our **MetaSanity** project in the directory `$HOM
 
 `mkdir $HOME/test-run && cd $HOME/test-run`
 
-**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `~/Downloads/Demo-Data`.
+**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `~/MetaSanity/ExampleSet`.
 
-`mkdir genomes && cd genomes && cp ~/Downloads/Demo-Data/* ./`
+`mkdir genomes && cd genomes && cp ~/MetaSanity/ExampleSet/* ./`
 
 Additionally, each **MetaSanity** pipeline requires a user-created configuration file. Default files are available in the MetaSanity program package in the folder `Config/Docker`. Each config file is broken up into two sections - a section for required parameters, and a section of optional information.
 
@@ -89,7 +89,7 @@ PATH = /usr/bin/fastANI
 --fragLen = 1500
 
 [BIOMETADB]
---db_name = Metagenomes
+--db_name = MSResults
 --table_name = evaluation
 --alias = eval
 FLAGS = -s
@@ -123,7 +123,7 @@ In the optional `GTDBTK` section, no changes are needed. Users may choose to omi
 
 In the `CUTOFFS` section, users may provide different (inclusive) values for identifying a genome as complete, contaminated, and non-redundant. This demo will use the values listed above (completion &ge;90%, contamination &le;5%, ANI &ge;98.5%), so I will change the line `IS_COMPLETE = 50` to `IS_COMPLETE = 90`.
 
-The **BioMetaDB** section provides me the option to name the project that this analysis will generate - in this case, `Metagenomes`. I also can set this value on the command line by passing the `-b project-name` command. No other changes should be made in this section.
+The **BioMetaDB** section provides me the option to name the project that this analysis will generate - in this case, `MSResults`. I also can set this value on the command line by passing the `-b project-name` command. No other changes should be made in this section.
 
 After these changes, the **PhyloSanity** config file should resemble the following:
 
@@ -149,7 +149,7 @@ PATH = /usr/bin/fastANI
 --fragLen = 1500
 
 [BIOMETADB]
---db_name = Metagenomes
+--db_name = MSResults
 --table_name = evaluation
 --alias = eval
 FLAGS = -s
@@ -201,26 +201,26 @@ Once **PhyloSanity** is complete, the default project directory structure will r
 	│   └── fastani_results.txt
 	├── gtdbtk_results
 	│   └── GTDBTK.bac120.summary.tsv 
-	├── metagenome_evaluation.list
-	├── metagenome_evaluation.tsv
-├── Metagenomes/
+	├── evaluation.list
+	├── evaluation.tsv
+├── MSResults/
 └── PhyloSanity.ini</code></pre>
 
-By default, the `out/` directory contains the raw data from the pipeline output. The `Metagenomes` directory contains the `BioMetaDB` project, including the SQL interface, that has all metadata stored in a `SQLite3` database.
+By default, the `out/` directory contains the raw data from the pipeline output. The `MSResults` directory contains the `BioMetaDB` project, including the SQL interface, that has all metadata stored in a `SQLite3` database.
 
 Within the `out/` directory are results directories for each output, labeled as `checkm_results`, etc. Also, running **PhyloSanity** generated a citations file that describes all of the analyses that were run in this pipeline.
 
 We can generate a quick summary of this data using a command-line query:
 
-`dbdm SUMMARIZE -c Metagenomes`
+`dbdm SUMMARIZE -c MSResults`
 
-Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
+Note that we can omit the `-c MSResults` if we are working in a directory that has no other **BioMetaDB** projects.
 
 `dbdm SUMMARIZE`
 
 <pre><code>SUMMARIZE:	View summary of all tables in database
- Project root directory:	Metagenomes
- Name of database:		Metagenomes.db
+ Project root directory:	MSResults
+ Name of database:		MSResults.db
 
 *******************************************************************************************
 	     Table Name:	evaluation  
@@ -254,12 +254,12 @@ This is great, but our completion requirement of 90% may be a bit strict for thi
 
 In fact, if we query the results for high quality, non-redundant genomes, we can see that only half of the dataset passed the combined filtering values:
 
-`dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr`
+`dbdm -c MSResults/ SUMMARIZE -t evaluation -q hqnr`
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-2.png) -->
 <pre><code>SUMMARIZE:	View summary of all tables in database
- Project root directory:	Metagenomes
- Name of database:		Metagenomes.db
+ Project root directory:	MSResults
+ Name of database:		MSResults.db
 
 *******************************************************************************************
 	     Table Name:	evaluation  
@@ -307,12 +307,12 @@ Notice that this run completes within a few seconds. Here is one of the benefits
 
 Let's query the database to see the results of this change in the completion filter:
 
-`dbdm SUMMARIZE -c Metagenomes -t evaluation`
+`dbdm SUMMARIZE -c MSResults -t evaluation`
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-3.png) -->
 <pre><code>SUMMARIZE:	View summary of all tables in database
- Project root directory:	Metagenomes
- Name of database:		Metagenomes.db
+ Project root directory:	MSResults
+ Name of database:		MSResults.db
 
 *******************************************************************************************
 	     Table Name:	evaluation  
@@ -344,12 +344,12 @@ With the new criteria, the number of genomes that are deemed 'complete' has incr
 
 We can also confirm that the number of high quality, non-redundant genomes has also increased.
 
-`dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr`
+`dbdm -c MSResults/ SUMMARIZE -t evaluation -q hqnr`
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini-4.png) -->
 <pre><code>SUMMARIZE:	View summary of all tables in database
- Project root directory:	Metagenomes
- Name of database:		Metagenomes.db
+ Project root directory:	MSResults
+ Name of database:		MSResults.db
 
 *******************************************************************************************
 	     Table Name:	evaluation  
@@ -382,19 +382,19 @@ Great! Let's output these sequences to a separate folder - in this case, I will 
 
 **BioMetaDB** has a very simple command-line interface for saving FASTA records and summary tab-delimited data files. We can store FASTA records to a folder using the `-w <folder-name>` flag. Combined with a query statement, we can very easily retrieve genomes that match our specific needs:
 
-`dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q hqnr -w HighQuality`
+`dbdm -c MSResults/ SUMMARIZE -t evaluation -q hqnr -w HighQuality`
 
 <pre><code>test-run/
 ├── genomes/
 ├── HighQuality/
 ├── eval.log
 ├── out/
-├── Metagenomes/
+├── MSResults/
 └── PhyloSanity.ini</code></pre>
 
 Another option for filtering the genomes that have been evaluated is by using the GTDB. In this example, we want all genomes that were assigned to genus ‘Gimesia’.
 
-`dbdm -c Metagenomes/ SUMMARIZE -t evaluation -q "genus == 'Gimesia'" -w Gimesia_genomes`
+`dbdm -c MSResults/ SUMMARIZE -t evaluation -q "genus == 'Gimesia'" -w Gimesia_genomes`
 
 After running this command, the default directory structure resembles the following:
 
@@ -404,7 +404,7 @@ After running this command, the default directory structure resembles the follow
 ├── HighQuality/
 ├── eval.log
 ├── out/
-├── Metagenomes/
+├── MSResults/
 └── PhyloSanity.ini</code></pre>
 
 In the [next blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-FuncSanity/), we will use **FuncSanity** to annotate this dataset!

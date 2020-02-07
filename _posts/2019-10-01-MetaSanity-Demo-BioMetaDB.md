@@ -27,26 +27,26 @@ In this blog, we will explore the completed results of **MetaSanity**. Specifica
 
 About
 ------
-**BioMetaDB**, accessible through the script `MetaSanity/BioMetaDB/dbdm.py`, part of the MetaSanity installation, is a database generator. This package manages FASTA files and data files that describe them, handling all CRUD operations and providing a simple command-line interface.
+**BioMetaDB**, part of the MetaSanity installation, is a database generator. This package manages FASTA files and data files that describe them, handling all CRUD operations and providing a simple command-line interface. **BioMetaDB** can also be installed using `pip install BioMetaDB`.
 
 
 **MetaSanity** output
 ------
-If you've been following this blog, both pipelines in **MetaSanity** are now complete at this point, and we have a **BioMetaDB** project names `Metagenomes` to use. Within this directory are two summary database tables as well as an extra table for each genome that was processed. **PhyloSanity** outputs the summary table named `evaluation`, and **FuncSanity** outputs the summary table named `functions` if either the KEGG Pathway annotation or Peptidase annotation were completed.
+If you've been following this blog, both pipelines in **MetaSanity** are now complete at this point, and we have a **BioMetaDB** project named `MSResults` to use. Within this directory are two summary database tables as well as an extra table for each genome that was processed. **PhyloSanity** outputs the summary table named `evaluation`, and **FuncSanity** outputs the summary table named `functions` if either the KEGG Pathway annotation or Peptidase annotation were completed.
 
 You can view these tables easily using:
 
-`dbdm -c Metagenomes SUMMARIZE -t evaluation`
+`dbdm -c MSResults SUMMARIZE -t evaluation`
 
-Note that we can omit the `-c Metagenomes` if we are working in a directory that has no other **BioMetaDB** projects.
+Note that we can omit the `-c MSResults` if we are working in a directory that has no other **BioMetaDB** projects.
 
 Using the `-r/--truncate` flag will return annotation IDs instead of descriptions for all output, excluding Prokka.
 
 `dbdm SUMMARIZE`
 
 <pre><code>SUMMARIZE: View summary of all tables in database
- Project root directory:  Metagenomes
- Name of database:    Metagenomes.db
+ Project root directory:  MSResults
+ Name of database:    MSResults.db
 
 *******************************************************************************************
        Table Name:  evaluation  
@@ -74,7 +74,7 @@ Number of Records:  10/10
            species  sp002684655           1           10          
 -------------------------------------------------------------------------------------------</code></pre>
 
-`dbdm -c Metagenomes SUMMARIZE -t functions`
+`dbdm -c MSResults SUMMARIZE -t functions`
 
 While this is definitely useful, **BioMetaDB** offers a far wider range of query options. You can find additional information [here](https://github.com/cjneely10/BioMetaDB) and additional examples [here](https://github.com/cjneely10/BioMetaDB/tree/master/Example).
 
@@ -89,15 +89,15 @@ Simple examples
 
 View a summary of all genomes that were deemed high-quality and non-redundant by **PhyloSanity**.
 
-`dbdm -c Metagenomes SUMMARIZE -t evaluation -q hqnr`
+`dbdm -c MSResults SUMMARIZE -t evaluation -q hqnr`
 
 View a summary of gene calls for TOBG-CPC-51 that were given annotations by **FuncSanity**.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q annotated -r`
+`dbdm -c MSResults SUMMARIZE -t tobg-cpc-51 -q annotated -r`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
- Project root directory:    Metagenomes
- Name of database:      Metagenomes.db
+ Project root directory:    MSResults
+ Name of database:      MSResults.db
 
 **********************************************************************************************
        Table Name:      tobg-cpc-51 
@@ -124,19 +124,19 @@ Number of Records:      1749/4167
 
 View a summary of gene calls for TOBG-CPC-51 that are given 'hypothetical protein' annotations.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-51 -q "unannotated AND prokka == 'hypothetical protein'" -r`
+`dbdm -c MSResults SUMMARIZE -t tobg-cpc-51 -q "unannotated AND prokka == 'hypothetical protein'" -r`
 
 View a summary of all genomes that have at least a partial predicted glycolysis or chemotaxis pathway.
 
-`dbdm -c Metagenomes SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0" -r`
+`dbdm -c MSResults SUMMARIZE -t functions -q "glycolysis > 0 OR chemotaxis > 0" -r`
 
 View a summary of gene calls for TOBG-CPC-997 that have both KO and MEROPS-Pfam annotations.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-np-997 -q "ko_annot AND merops_pfam_annot" -r`
+`dbdm -c MSResults SUMMARIZE -t tobg-np-997 -q "ko_annot AND merops_pfam_annot" -r`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
- Project root directory:    Metagenomes
- Name of database:      Metagenomes.db
+ Project root directory:    MSResults
+ Name of database:      MSResults.db
 
 **********************************************************************************************
          Table Name:    tobg-cpc-51 
@@ -157,19 +157,19 @@ View a summary of gene calls for TOBG-CPC-997 that have both KO and MEROPS-Pfam 
 
 View a list of all unique KO values assigned to TOBG-CPC-96 gene calls.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-96 -u ko`
+`dbdm -c MSResults SUMMARIZE -t tobg-cpc-96 -u ko`
 
 View contigs in the TOBG-CPC-85 genome that were identified as likely being of phage origin.
 
-`dbdm -c Metagenomes SUMMARIZE -t tobg-cpc-85 -q "phage_contig_1 > 0"`
+`dbdm -c MSResults SUMMARIZE -t tobg-cpc-85 -q "phage_contig_1 > 0"`
 
 View a list of all of the tables in the database
 
-`dbdm -c Metagenomes SUMMARIZE -v t`
+`dbdm -c MSResults SUMMARIZE -v t`
 
 View a list of all of the columns in each table of the database.
 
-`dbdm -c Metagenomes SUMMARIZE -v c`
+`dbdm -c MSResults SUMMARIZE -v c`
 
 
 Great! Even on a simple level, we can begin to see some potential utility. If we were to couple any of the above examples with `-w out_fna` or `-x prefix`, then we could store all matching FASTA records to an external directory, or generate a summary tab-delimited data file of all database table information, respectively.
@@ -232,11 +232,11 @@ Link evaluation with annotation
 
 Working with MAGs requires researchers to take added additional care to ensure genome quality and minimize genome redundancy. **BioMetaDB** makes it very easy to handle these queries directly from the command line. Consider the following command:
 
-`dbdm -c Metagenomes SUMMARIZE -t evaluation -q is_complete`
+`dbdm -c MSResults SUMMARIZE -t evaluation -q is_complete`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
- Project root directory:    Metagenomes
- Name of database:      Metagenomes.db
+ Project root directory:    MSResults
+ Name of database:      MSResults.db
 
 *******************************************************************************************
          Table Name:    evaluation  
@@ -268,7 +268,7 @@ As expected, this command will query the evaluation table for genomes whose Bool
 
 Handy. Let's introduce a **query operator** - a specific delimiter that allows us to link our database tables. Consider if we wanted to gather a summary of all extracellular peptidases that were identified during **FuncSanity**, but we only want this information for our genomes deemed to be complete. This is easily accomplished with the following command:
 
-`dbdm -c Metagenomes SUMMARIZE -q "is_complete ~> is_extracellular"`
+`dbdm -c MSResults SUMMARIZE -q "is_complete ~> is_extracellular"`
 
 Using this command, all genomes determined to be complete are iteratively queried for extracellular peptidases. This data is summarily displayed to the screen by genome. As with above, gene calls can be stored to an external directory using `-w out_fna`, and summary data can be stored using `-x out`, with a TSV file generated for each genome that was queried.
 
@@ -276,11 +276,11 @@ In general, **we can link `evaluation` and `annotation`** using the format `eval
 
 Here are a few more examples:
 
-`dbdm -c Metagenomes SUMMARIZE -q "hqnr ~> annotated" -r`
+`dbdm -c MSResults SUMMARIZE -q "hqnr ~> annotated" -r`
 
 <pre><code>SUMMARIZE:   View summary of all tables in database
- Project root directory:    Metagenomes
- Name of database:      Metagenomes.db
+ Project root directory:    MSResults
+ Name of database:      MSResults.db
 
 **********************************************************************************************
            Table Name:    tobg-cpc-51 
@@ -437,11 +437,11 @@ Here are a few more examples:
                 prokka      zraR_6                  9           1251        
 -------------------------------------------------------------------------------------------</code></pre>
 
-`dbdm -c Metagenomes SUMMARIZE -q "NOT is_contaminated ~> prokka_annot"`
+`dbdm -c MSResults SUMMARIZE -q "NOT is_contaminated ~> prokka_annot"`
 
-`dbdm -c Metagenomes SUMMARIZE -q "is_contaminated == False ~> prokka_annot"`
+`dbdm -c MSResults SUMMARIZE -q "is_contaminated == False ~> prokka_annot"`
 
-`dbdm -c Metagenomes SUMMARIZE -q "is_non_redundant ~> cazy_annot"`
+`dbdm -c MSResults SUMMARIZE -q "is_non_redundant ~> cazy_annot"`
 
 
 Link putative metabolic function with annotation.
@@ -451,7 +451,7 @@ For researchers interested in metabolic function, gathering gene calls for genom
 
 Consider the following query:
 
-`dbdm -c Metagenomes SUMMARIZE -t functions -q "chemotaxis > 0"`
+`dbdm -c MSResults SUMMARIZE -t functions -q "chemotaxis > 0"`
 
 As we expect, this query will check the `functions` table for genomes that have at least a partial pathway for chemotaxis. As before, the commands `-w out_fna` and `-x out.tsv` work as expected.
 
@@ -461,19 +461,19 @@ In general, **we can link `functions` and `annotation`** using the format `funct
 
 Here are a few more examples:
 
-`dbdm -c Metagenomes SUMMARIZE -q "woodljungdahl > 0 -> prokka_annot"`
+`dbdm -c MSResults SUMMARIZE -q "woodljungdahl > 0 -> prokka_annot"`
 
-`dbdm -c Metagenomes SUMMARIZE -q "transporter_ammonia > 0.5 -> annotated"`
+`dbdm -c MSResults SUMMARIZE -q "transporter_ammonia > 0.5 -> annotated"`
 
-`dbdm -c Metagenomes SUMMARIZE -q "sulfur_assimilation == 1 -> annotated"`
+`dbdm -c MSResults SUMMARIZE -q "sulfur_assimilation == 1 -> annotated"`
 
 For a specific example, we can look for genomes that are predicted to perform chemotaxis. Assessing the [KEGG annotations](https://github.com/bjtully/BioData/blob/master/KEGGDecoder/KOALA_definitions.txt) that belong in the chemotaxis pathway, it includes, among others, K03409. Let's go ahead and combine these searches.
 
-`dbdm -c Metagenomes SUMMARIZE -q "chemotaxis > 0 -> ko == 'K03409'"`
+`dbdm -c MSResults SUMMARIZE -q "chemotaxis > 0 -> ko == 'K03409'"`
 
 Using this command, we query each genome with a partial chemotaxis pathway for this specific KO. If we had not determined a specific KO value to search for, we could also have gained insight into these genomes with the following command:
 
-`dbdm -c Metagenomes SUMMARIZE -q "chemotaxis > 0 -> ko_annot"`
+`dbdm -c MSResults SUMMARIZE -q "chemotaxis > 0 -> ko_annot"`
 
 Recall that, for genome tables (ex. tobg-cpc-85, etc.), we can add `_annot` to column names of our database table - `ko_annot`, `prokka_annot`, etc. As with above, gene calls can be stored to an external directory using `-w out_fna`, and summary data can be stored using `-x out`, with a TSV file generated for each genome that was queried.
 
@@ -483,7 +483,7 @@ Link evaluation and putative metabolic function.
 
 In fine-tuning one's data, it may be useful to investigate evaluation and metabolic functions simultaneously. To do this, we introduce one final **query operator** in the following command:
 
-`dbdm -c Metagenomes SUMMARIZE -q "is_complete >> riboflavin_biosynthesis > 0"`
+`dbdm -c MSResults SUMMARIZE -q "is_complete >> riboflavin_biosynthesis > 0"`
 
 This command looks for genomes that are determined to be complete and outputs genomes (not gene calls) with at least a partial riboflavin biosynthesis pathway. As with above, output (in this case genomes) can be stored to an external directory using `-w out_fna`, and summary data can be stored using `-x out.tsv`.
 
@@ -499,7 +499,7 @@ We will need two of our **query operators** - `evaluation ~> annotation` and `fu
 
 For this example dataset, we may want to determine if any high-quality, non-redundant genomes of the kingdom Planctomycetota had at least a partially complete dissimilatory nitrate reduction pathway, and to gather annotation information for all genes from those genomes that were assigned KO values. This is easily accomplished using the following:
 
-`dbdm -c Metagenomes SUMMARIZE -q "hqnr AND kingdom == 'Planctomycetota' ~> dissim_nitrate_reduction > 0 -> ko_annot"`
+`dbdm -c MSResults SUMMARIZE -q "hqnr AND kingdom == 'Planctomycetota' ~> dissim_nitrate_reduction > 0 -> ko_annot"`
 
 Amazing! And, as before, we can store the gene calls or tsv data for this query using `-w out_fna` and `-x out`, respectively, outputting one tsv file per genome.
 
