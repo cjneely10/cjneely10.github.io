@@ -46,7 +46,7 @@ The remaining directories contain the raw output from each of the programs that 
 
 ### GTDB-Tk
 
-`gtdbtk_results/GTDBTK.bac120.summary.tsv` and `gtdbtk_results/GTDBTK.ar122.summary.tsv` optionally provides putative phylogeny.
+`gtdbtk_results/GTDBTK.bac120.summary.tsv` and `gtdbtk_results/GTDBTK.ar122.summary.tsv` optionally provide putative phylogeny.
 
 
 ## FuncSanity

@@ -195,14 +195,14 @@ Once **PhyloSanity** is complete, the default project directory structure will r
 ├── genomes/
 ├── eval.log
 ├── out/
-	├── checkm_results
-	│   └── checkm_lineageWF_results.qa.txt
-	├── fastani_results
-	│   └── fastani_results.txt
-	├── gtdbtk_results
-	│   └── GTDBTK.bac120.summary.tsv 
-	├── evaluation.list
-	├── evaluation.tsv
+  ├── checkm_results
+  │ └── checkm_lineageWF_results.qa.txt
+  ├── fastani_results
+  │ └── fastani_results.txt
+  ├── gtdbtk_results
+  │ └── GTDBTK.bac120.summary.tsv 
+  ├── evaluation.list
+  ├── evaluation.tsv
 ├── MSResults/
 └── PhyloSanity.ini</code></pre>
 
