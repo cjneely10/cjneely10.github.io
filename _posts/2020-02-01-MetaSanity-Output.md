@@ -25,7 +25,7 @@ Given the complexity and volume of this application, we will walk through the ra
 ├── prokka_results​/
 ├── interproscan_results​/
 ├── kegg_results​/
-├── peptidase_results​/
+├── cazymerops_results​/
 ├── virsorter_results/
 ├── mag1.annotation.tsv
 ...</code></pre>
@@ -99,7 +99,7 @@ InterProScan contributes the most to MetaSanity runtimes.
 
 ### MEROPS
 
-<pre><code>peptidase_results/
+<pre><code>cazymerops_results/
 ├── mag1.merops.tsv  # MEROPS matches
 ├── mag1.pfam.tsv  # MEROPS matches by PFam id
 ├── merops/
@@ -109,7 +109,7 @@ InterProScan contributes the most to MetaSanity runtimes.
 
 ### CAZy
 
-<pre><code>peptidase_results/
+<pre><code>cazymerops_results/
 ├── cazy/
   ├── hmmsearch_results/  # HMMSearch output
   ├── mag1.cazy_assignments.tsv  # Raw counts of CAZy HMM matches
@@ -117,7 +117,7 @@ InterProScan contributes the most to MetaSanity runtimes.
 
 ### PSORTb and SignalP
 
-<pre><code>peptidase_results/
+<pre><code>cazymerops_results/
 ├── psortb_results/
   ├── mag1.tbl  # Raw PSORTb output
 ├── signalp_results/
@@ -125,7 +125,7 @@ InterProScan contributes the most to MetaSanity runtimes.
 
 ### Extracellular Peptidase
 
-<pre><code>peptidase_results/
+<pre><code>cazymerops_results/
 ├── mag1.pfam.by_prot.tsv  # PFam annotations for peptidase results</code></pre>
 
 ### VirSorter
