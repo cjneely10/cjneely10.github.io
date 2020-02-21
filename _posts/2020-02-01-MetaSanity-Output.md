@@ -7,7 +7,7 @@ tags:
   - demos
 ---
 
-In a [previous post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-BioMetaDB/), we walked through several examples of using **BioMetaDB** - a Bio-focused command-line SQL wrapper package - to query the results of our **MetaSanity** pipeline runs. The contents of each project is self-contained, making it very easy for users to focus their attention on getting specific information.
+In a [previous post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-3-BioMetaDB/), we walked through several examples of using **BioMetaDB** - a Bio-focused command-line SQL wrapper package - to query the results of our **MetaSanity** pipeline runs. The contents of each project is self-contained, making it very easy for users to focus their attention on getting specific information.
 
 <img src="https://cjneely10.github.io/files/Figure1-Workflow.png" style="border:2px solid black">
 

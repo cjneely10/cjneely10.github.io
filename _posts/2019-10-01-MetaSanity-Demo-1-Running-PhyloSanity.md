@@ -1,7 +1,7 @@
 ---
 title: 'MetaSanity Demo - Running PhyloSanity'
 date: 2019-10-01
-permalink: /posts/2019/10/MetaSanity-Demo-Running-PhyloSanity/
+permalink: /posts/2019/10/MetaSanity-Demo-1-Running-PhyloSanity/
 tags:
   - MetaSanity
   - demos
@@ -33,8 +33,8 @@ For even more usage examples, see [MetaSanity's wiki page](https://github.com/cj
 
 I will use the **PhyloSanity** pipeline to evaluate a dataset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
 
-In a follow-up [blog post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-FuncSanity/), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
-In a final [blog post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-BioMetaDB/), I will explore the results of my work by using the **BioMetaDB** SQL interface.
+In a follow-up [blog post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-2-Running-FuncSanity/), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
+In a final [blog post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-3-BioMetaDB/), I will explore the results of my work by using the **BioMetaDB** SQL interface.
 
 Runtime for **MetaSanity** can be quite long for high numbers of genomes. Users should consider options to run this process in the background. For example, in Linux/Unix environments ‘screen’ can be used - `screen -S test-run-MetaSanity`.
 
@@ -382,4 +382,4 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 	         species	sp002683825         	1         	7           
 -------------------------------------------------------------------------------------------</code></pre>
 
-In the [next blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-FuncSanity/), we will use **FuncSanity** to annotate this dataset!
+In the [next blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-2-Running-FuncSanity/), we will use **FuncSanity** to annotate this dataset!

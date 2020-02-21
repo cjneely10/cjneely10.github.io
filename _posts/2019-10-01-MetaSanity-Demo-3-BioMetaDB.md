@@ -1,13 +1,13 @@
 ---
 title: 'MetaSanity Demo - BioMetaDB'
 date: 2019-10-01
-permalink: /posts/2019/10/MetaSanity-Demo-BioMetaDB/
+permalink: /posts/2019/10/MetaSanity-Demo-3-BioMetaDB/
 tags:
   - MetaSanity
   - demos
 ---
 
-In this blog, we will continue our work from the [previous demo blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-FuncSanity/). We had just completed both steps of the **MetaSanity** package, and we now have an output directory filled with output from each program and parsed tab-delimited data files (TSVs).
+In this blog, we will continue our work from the [previous demo blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-2-Running-FuncSanity/). We had just completed both steps of the **MetaSanity** package, and we now have an output directory filled with output from each program and parsed tab-delimited data files (TSVs).
 
 We also have a working **BioMetaDB** project that contains all of our results, but better.
 
