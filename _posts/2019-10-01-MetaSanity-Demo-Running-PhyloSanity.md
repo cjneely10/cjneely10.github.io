@@ -24,11 +24,12 @@ Why should I use MetaSanity?
 
 MetaSanity demo
 ======
-This blog post will walk through the data analysis pipelines available in **MetaSanity** using a small set of publicly available metagenomic-assembled genomes (MAGs). This post assumes that the Docker version of **MetaSanity** is being used; however, the source code users can reference this post so long as they use the valid source code configuration files from the [github repo](https://github.com/cjneely10/MetaSanity).
+This blog post will walk through the data analysis pipelines available in **MetaSanity**. We will use the data that is available
+in the `MetaSanity/ExampleSet` directory, but this blog can work for your data, too!
+ 
+This post assumes that the Docker version of **MetaSanity** is being used; however, the source code users can reference this post so long as they use the valid source code configuration files from the [github repo](https://github.com/cjneely10/MetaSanity).
 
-For even more usage examples, see [MetaSanity's usage page](https://github.com/cjneely10/MetaSanity/wiki/3-Usage).
-
-For this blog post, I have selected a group of genomes of variable quality and completion/contamination. This test dataset is available for download <a href="https://drive.google.com/open?id=1561UHa9QC0odw3JgD4H4f6Eq6NLFZlOK" target="_blank">here</a>.
+For even more usage examples, see [MetaSanity's wiki page](https://github.com/cjneely10/MetaSanity/wiki).
 
 I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
 
@@ -47,11 +48,11 @@ In this blog, we will generate our **MetaSanity** project in the directory `$HOM
 
 `mkdir $HOME/test-run && cd $HOME/test-run`
 
-**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `~/MetaSanity/ExampleSet`.
+**MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `~/DataSet/`.
 
-`mkdir genomes && cd genomes && cp ~/MetaSanity/ExampleSet/* ./`
+`mkdir genomes && cp ~/DataSet/* genomes/`
 
-Additionally, each **MetaSanity** pipeline requires a user-created configuration file. Default files are available in the MetaSanity program package in the folder `Config/Docker`. Each config file is broken up into two sections - a section for required parameters, and a section of optional information.
+If you are using your own genomes/MAGs, copy them into the directory instead of the example set.
 
 ******
 
@@ -60,6 +61,8 @@ Part 1 - PhyloSanity
 
 Config file preparation
 ------
+**PhyloSanity** pipeline requires a user-created configuration file. Default files are available in the MetaSanity program package in the folder `Config/Docker`. Each config file is broken up into two sections - a section for required parameters, and a section of optional information.
+
 Copy the default configuration file from your program package into your project directory.
 
 `cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/PhyloSanity.ini ./`
@@ -101,8 +104,8 @@ IS_CONTAMINATED = 5
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# The following pipe sections may optionally be set
-# Ensure that the entire pipe section is valid,
+# The following sections may optionally be set
+# Ensure that the entire section is valid,
 # or deleted/commented out, prior to running pipeline
 
 
@@ -200,6 +203,7 @@ Once **PhyloSanity** is complete, the default project directory structure will r
   ├── fastani_results
   │ └── fastani_results.txt
   ├── gtdbtk_results
+    ├── GTDBTK.ar122.summary.tsv 
   │ └── GTDBTK.bac120.summary.tsv 
   ├── evaluation.list
   ├── evaluation.tsv

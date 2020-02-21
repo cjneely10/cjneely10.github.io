@@ -27,7 +27,7 @@ In this blog, we will explore the completed results of **MetaSanity**. Specifica
 
 About
 ------
-**BioMetaDB**, part of the MetaSanity installation, is a database generator. This package manages FASTA files and data files that describe them, handling all CRUD operations and providing a simple command-line interface. **BioMetaDB** can also be installed using `pip install BioMetaDB`.
+**BioMetaDB**, part of the MetaSanity installation, is a database generator. This package manages FASTA files and data files that describe them, handling all CRUD operations and providing a simple command-line interface. **BioMetaDB** can also be installed using `pip3 install BioMetaDB`.
 
 
 **MetaSanity** output
