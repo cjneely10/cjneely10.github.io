@@ -24,14 +24,14 @@ Why should I use MetaSanity?
 
 MetaSanity demo
 ======
-This blog post will walk through the data analysis pipelines available in **MetaSanity**. We will use the data that is available
-in the `MetaSanity/ExampleSet` directory, but this blog can work for your data, too!
+This blog post will walk through the data analysis pipelines available in **MetaSanity**. The results I display is test data - this
+blog post is meant to be followed using your own data.
  
 This post assumes that the Docker version of **MetaSanity** is being used; however, the source code users can reference this post so long as they use the valid source code configuration files from the [github repo](https://github.com/cjneely10/MetaSanity).
 
 For even more usage examples, see [MetaSanity's wiki page](https://github.com/cjneely10/MetaSanity/wiki).
 
-I will use the **PhyloSanity** pipeline to evaluate this subset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
+I will use the **PhyloSanity** pipeline to evaluate a dataset for high quality, non-redundant genomes, which we will initially define as genomes with a completion score &ge;90% and a contamination score &le;5% via the CheckM pipeline. We define "non-redundant" based on a pairwise comparison of genome-wide average nucleotide identity (ANI). A non-redundant genome is identified if 1) no other genome(s) in the dataset have &ge;98.5% ANI, or 2) for any set of genomes that have &ge;98.5% ANI, the genome with the highest percent completion and lowest contamination.
 
 In a follow-up [blog post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-FuncSanity/), I will use **FuncSanity** to design a customized pipeline based on the five available annotation suites, and I will use this pipeline to provide structural and functional annotations for each genome.
 In a final [blog post](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-BioMetaDB/), I will explore the results of my work by using the **BioMetaDB** SQL interface.
@@ -42,17 +42,17 @@ Installation
 ------
 See the [wiki page](https://github.com/cjneely10/MetaSanity/wiki/2-Installation) for installation instructions. This blog post assumes that users have completed instructions for the optional installation.
 
+For simplicity's sake, this blog assumes that **MetaSanity** is installed in your home directory.
+
 Project preparation
 ======
-In this blog, we will generate our **MetaSanity** project in the directory `$HOME/test-run`.
+In this blog, we will generate our **MetaSanity** project in the directory `~/test-run`.
 
-`mkdir $HOME/test-run && cd $HOME/test-run`
+`mkdir ~/test-run && cd ~/test-run`
 
 **MetaSanity** requires that genome files be present in a single directory. We will create a directory and fill it with the datasets provided for this blog post. The following command completes these tasks, assuming that your data is present in `~/DataSet/`.
 
 `mkdir genomes && cp ~/DataSet/* genomes/`
-
-If you are using your own genomes/MAGs, copy them into the directory instead of the example set.
 
 ******
 
@@ -65,13 +65,12 @@ Config file preparation
 
 Copy the default configuration file from your program package into your project directory.
 
-`cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/PhyloSanity.ini ./`
+`cd ~/test-run && cp ~/MetaSanity/Config/Docker/PhyloSanity.ini ./`
 
 The config file `PhyloSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. You can edit the config file in a terminal using `nano PhyloSanity.ini`. The file `Complete-PhyloSanity.ini` in the project package contains the currently supported flags that are available to each program in the **PhyloSanity** pipeline.
 
 <!-- ![](https://cjneely10.github.io/files/phylosanity-ini.png) -->
-<pre><code># Docker/PhyloSanity.ini
-# Default config file for running the FuncSanity pipeline
+<pre><code># Default config file for running the FuncSanity pipeline
 # DO NOT edit any PATH, DATA, or DATA_DICT variables
 # Users are recommended to edit copies of this file only
 
@@ -178,7 +177,7 @@ PATH = /usr/local/bin/gtdbtk
 
 Running PhyloSanity
 ------
-The project directory `test-run` should resemble the following structure:
+The project directory `test-run` should resemble the following structure, substituting your own values:
 
 <pre><code>test-run/
 ├── genomes/
@@ -221,6 +220,8 @@ We can generate a quick summary of this data using a command-line query:
 Note that we can omit the `-c MSResults` if we are working in a directory that has no other **BioMetaDB** projects.
 
 `dbdm SUMMARIZE`
+
+Below is the summary of a random dataset:
 
 <pre><code>SUMMARIZE:	View summary of all tables in database
  Project root directory:	MSResults
@@ -380,35 +381,5 @@ We can also confirm that the number of high quality, non-redundant genomes has a
 	redundant_copies	[]                  	7         	7           
 	         species	sp002683825         	1         	7           
 -------------------------------------------------------------------------------------------</code></pre>
-
-
-Great! Let's output these sequences to a separate folder - in this case, I will name it `HighQuality` - and focus our annotation pipeline on this subset. 
-
-**BioMetaDB** has a very simple command-line interface for saving FASTA records and summary tab-delimited data files. We can store FASTA records to a folder using the `-w <folder-name>` flag. Combined with a query statement, we can very easily retrieve genomes that match our specific needs:
-
-`dbdm -c MSResults/ SUMMARIZE -t evaluation -q hqnr -w HighQuality`
-
-<pre><code>test-run/
-├── genomes/
-├── HighQuality/
-├── eval.log
-├── out/
-├── MSResults/
-└── PhyloSanity.ini</code></pre>
-
-Another option for filtering the genomes that have been evaluated is by using the GTDB. In this example, we want all genomes that were assigned to genus ‘Gimesia’.
-
-`dbdm -c MSResults/ SUMMARIZE -t evaluation -q "genus == 'Gimesia'" -w Gimesia_genomes`
-
-After running this command, the default directory structure resembles the following:
-
-<pre><code>test-run/
-├── genomes/
-├── Gimesia_genomes/
-├── HighQuality/
-├── eval.log
-├── out/
-├── MSResults/
-└── PhyloSanity.ini</code></pre>
 
 In the [next blog](https://cjneely10.github.io/posts/2019/10/MetaSanity-Demo-Running-FuncSanity/), we will use **FuncSanity** to annotate this dataset!

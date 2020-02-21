@@ -34,6 +34,8 @@ About
 ------
 If you've been following this blog, both pipelines in **MetaSanity** are now complete at this point, and we have a **BioMetaDB** project named `MSResults` to use. Within this directory are two summary database tables as well as an extra table for each genome that was processed. **PhyloSanity** outputs the summary table named `evaluation`, and **FuncSanity** outputs the summary table named `functions` if either the KEGG Pathway annotation or Peptidase annotation were completed.
 
+All values below are for a random dataset. Your displays will look different.
+
 You can view these tables easily using:
 
 `dbdm -c MSResults SUMMARIZE -t evaluation`

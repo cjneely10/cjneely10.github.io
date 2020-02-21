@@ -11,32 +11,20 @@ In this blog, we will continue our work from the [first demo blog](https://cjnee
 
 Now, we can begin annotating each genome.
 
-Project preparation
-======
-We are continuing our work in the directory `$HOME/test-run`. After the last blog, the contents of this directory should resemble the following:
-
-<pre><code>test-run/
-├── genomes/
-├── Gimesia_genomes/
-├── HighQuality/
-├── eval.log
-├── out/
-├── MSResults/
-└── PhyloSanity.ini</code></pre>                         
-
 Part 2 - FuncSanity
 ======
+
+We are continuing our work in the directory `~/test-run`.
 
 Config file preparation
 ------
 Copy the default configuration file from your program package into your project directory.
 
-`cd $HOME/test-run && cp /path/to/MetaSanity/Config/Docker/FuncSanity.ini ./`
+`cd ~/test-run && cp ~/MetaSanity/Config/Docker/FuncSanity.ini ./`
 
 The config file `FuncSanity.ini` can be used as-is; however, users may add additional flags or edit existing flags as needed. Again, we'll edit the config file using `nano FuncSanity.ini`. The file `Complete-FuncSanity.ini` in the project package contains the currently supported flags that are available to each program in the **FuncSanity** pipeline.
 
-<pre><code># Docker/FuncSanity.ini
-# Default config file for running the FuncSanity pipeline
+<pre><code># Default config file for running the FuncSanity pipeline
 # DO NOT edit any PATH, DATA, or DATA_DICT variables
 # Users are recommended to edit copies of this file only
 
@@ -128,7 +116,8 @@ PATH = /home/appuser/virsorter-data
 
 As before, I will now edit this configuration file to match the specifications of my system. For this analysis, I am not interested in predicting protein domains, so I will leave InterProScan commented out.
 
-The `FuncSanity.ini` config file currently has SignalP commented out, so I will uncomment this section by removing the `#` characters preceding the two SignalP lines. I am also interested in predicting extracellularity, so I will also remove the `#` characters that precede the two PSORTb lines.
+I interested in predicting extracellularity, so I will also remove the `#` characters that precede the two PSORTb lines. 
+I will also uncomment the SignalP section by removing the `#` characters preceding the two SignalP lines. 
 
 I will raise the thread count on each applicable program to better match my system, but no other flags need to be changed.
 
@@ -225,13 +214,11 @@ PATH = /home/appuser/virsorter-data
 
 Running FuncSanity
 ------
-The project directory `test-run` should resemble the following structure:
+The project directory `test-run` should resemble the following structure, substituting your own values:
 
 <pre><code>test-run/
 ├── genomes/
 ├── FuncSanity.ini
-├── Gimesia_genomes/
-├── HighQuality/
 ├── eval.log
 ├── out/
 ├── MSResults/
@@ -263,8 +250,6 @@ Once **FuncSanity** is complete, the project directory structure will resemble t
 ├── annot.log	
 ├── genomes/
 ├── FuncSanity.ini
-├── Gimesia_genomes/
-├── HighQuality/
 ├── eval.log
 ├── out/
 ├── MSResults/
