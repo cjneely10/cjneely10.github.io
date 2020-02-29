@@ -85,13 +85,13 @@ InterProScan contributes the most to MetaSanity runtimes.
 <pre><code>kegg_results/
 ├── biodata_results/  # KEGG-Decoder-derived metabolic pathway estimation counts
   ├── KEGG.final.tsv
-  ├── KEGG.expander.tsv 
-  ├── KEGG.decoder.tsv  
-  ├── decode-expand_heatmap.svg  # Heatmaps
-  ├── hmm_heatmap.svg
-  ├── combined_results/
-    ├── combined.ko  # kofamscan matches for KEGG-Decoder input
-    ├── combined.protein  # gene calls for KEGG-Decoder input
+  ├── KEGG.decoder.tsv 
+├── combined_results/
+  ├── combined.ko  # kofamscan matches for KEGG-Decoder input
+  ├── combined.protein  # gene calls for KEGG-Decoder input
+  ├── combined.expander.tbl  # HMM search results (part of BioData pipeline)
+  ├── combined.expander.tsv  # Raw counts from BioData pipeline
+  ├── combined.html  # Heatmap of putative metabolic pathway completion estimates
 ├── kofamscan_results/
   ├── mag1.tsv  # KO matches per protein
   ├── mag1.detailed  # Detailed kofamscan output
