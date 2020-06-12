@@ -1,7 +1,7 @@
 ---
 title: "MetaSanity: An integrated microbial genome evaluation and annotation pipeline"
 collection: publications
-permalink: /publication/2020-06-12-metasanity
+permalink: /publication/2020-05-19-metasanity
 excerpt: 'As the importance of microbiome research continues to become more prevalent and essential to understanding a wide variety of ecosystems (e.g., marine, built, host-associated, etc.), there is a need for researchers to be able to perform highly reproducible and quality analysis of microbial genomes.'
 date: 2020-05-19
 venue: 'Oxford Academic Bioinformatics'
