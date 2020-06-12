@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* B.S. in Quantitative Biology in progress, University of Southern California, 2022
+* B.S. in Quantitative Biology (minor in Computer Science) in progress, University of Southern California, 2022
 * A.S. in Biology, Engineering, and General Sciences, Rio Hondo College, 2019
 * A.D.T in Biology, Mathematics, Physics, Chemistry, Rio Hondo College, 2019
 
@@ -113,6 +113,7 @@ Service and leadership
 
 Awards, Honors, and Achievements
 ======
+* 2020 Summer Undergraduate Research Fellowship at USC winner
 * 2020 Alpha Lambda Delta Honors Society
 * 2019 Rio Hondo College Outstanding Student Award - Biology
 * 2018 Rio Hondo College Outstanding Student Award - Engineering
