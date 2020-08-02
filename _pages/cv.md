@@ -11,16 +11,15 @@ redirect_from:
 
 Education
 ======
-* B.S. in Quantitative Biology (minor in Computer Science) in progress, University of Southern California, 2022
+* B.S. in Quantitative Biology (minor in Computer Science) in progress, University of Southern California, 2021
 * A.S. in Biology, Engineering, and General Sciences, Rio Hondo College, 2019
 * A.D.T in Biology, Mathematics, Physics, Chemistry, Rio Hondo College, 2019
 
 Internships
 ======
-* 11/2018 - present: Undergraduate Research Assistant
+* 11/2018 - present: Undergraduate Bioinformatics Research Assistant
   * University of Southern California
   * Center for Dark Energy Biospheres Investigations
-  * Studying metabolic diversity in the globally abundant Planctomycetes phylum.
   * Mentor: John Heidelberg, Ph.D, and Ben Tully, Ph.D
 * 06/2018 - 08/2018: Bioinformatics Intern
   * Cornell University, New York
@@ -113,13 +112,13 @@ Service and leadership
 
 Awards, Honors, and Achievements
 ======
-* 2020 Summer Undergraduate Research Fellowship at USC winner
+* 2020 Hispanic Scholarship Foundation Scholar
+* 2020 Summer Undergraduate Research Fellowship at USC winner (Gupta Family Fellowship)
 * 2020 Alpha Lambda Delta Honors Society
 * 2019 Rio Hondo College Outstanding Student Award - Biology
 * 2018 Rio Hondo College Outstanding Student Award - Engineering
 * 2018 Great Minds in STEM/HENAAC Scholarship recipient
 * 2018 Boyce Thompson Institute Poster Conference - 1st Place
 * 2018 Grow with Google Udacity Scholarship (Android programming)
-* 2018, 2017 Southern California Edison Book Scholarship recipient
 * Rio Hondo College Dean’s List Fall 2016 - Fall 2019
 * 2017 Student travel scholarship to SACNAS conference
