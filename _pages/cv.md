@@ -80,9 +80,10 @@ Skills
 ======
 * Programming
   * Python - Flask, NumPy, Pandas, Django
-  * HTML5, CSS3, SQL, JavaScript (jQuery)
-  * Java
+  * JavaScript (jQuery)
+  * Rust
   * C++
+  * Linux (Ubuntu/bash)
   * Arduino and Raspberry Pi microcontroller
 * Public Speaking
   * Local parliamentary debate competitions
